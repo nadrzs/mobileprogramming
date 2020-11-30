@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
                 fragmentTransaction.commit();
+            }else if(id == R.id.nav_account){
+                // Bagian Nadhifa
+
             }
 
             return true;
