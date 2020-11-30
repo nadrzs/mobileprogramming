@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_drawer_account"
+        android:icon="@drawable/ic_person"
+        android:title="My Account"
+        />
+
+    <item
+        android:id="@+id/nav_drawer_contact_us"
+        android:icon="@drawable/ic_drafts_black_24dp"
+        android:title="Contact Us"
+        />
+
+    <item
+        android:id="@+id/nav_drawer_about_us"
+        android:icon="@drawable/question"
+        android:title="About Us"
+        />
+
+    <item
+        android:id="@+id/nav_drawer_logout"
+        android:icon="@drawable/ic_exit"
+        android:title="Log Out"
+        />
+
+</menu>

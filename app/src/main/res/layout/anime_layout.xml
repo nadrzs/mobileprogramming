@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="6dp"
+    android:clickable="true"
+    card_view:cardElevation="8dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/anime_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ec5" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:text="Anime Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/anime_title"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/anime_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Anime type"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/anime_startEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Anime Start End"
+                    android:layout_marginRight="30dp"/>
+
+                <ImageView
+
+                    android:id="@+id/rating_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_star"/>
+
+                <TextView
+                    android:id="@+id/anime_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rating"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/anime_members"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Anime Members"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
