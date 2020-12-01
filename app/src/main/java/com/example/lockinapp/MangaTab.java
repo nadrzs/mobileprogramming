@@ -14,12 +14,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.lockinapp.Data.ApiService;
 import com.example.lockinapp.Data.DataRetrofit;
+import com.example.lockinapp.Fragment.TopAiringFragment;
+import com.example.lockinapp.Fragment.TopAllAnimeFragment;
+import com.example.lockinapp.Fragment.TopAllMangaFragment;
+import com.example.lockinapp.Fragment.TopMovieFragment;
+import com.example.lockinapp.Fragment.TopNovelsFragment;
+import com.example.lockinapp.Fragment.TopOneshotsFragment;
+import com.example.lockinapp.Fragment.TopTvSeriesFragment;
+import com.example.lockinapp.Fragment.TopUpcomingFragment;
 import com.example.lockinapp.Model.Manga;
 import com.example.lockinapp.Model.MangaItem;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
@@ -30,11 +40,8 @@ import retrofit2.Response;
 public class MangaTab extends Fragment {
 
     private View view;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter layoutAdapter;
-    private int manga_page;
-    private ProgressBar Loading;
-    private SwipeRefreshLayout Refresh;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     public MangaTab(){
 
@@ -45,60 +52,21 @@ public class MangaTab extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.manga_tab, container, false);
-        recyclerView = view.findViewById(R.id.MangaRecycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        Loading = view.findViewById(R.id.mangaLoading);
-        Refresh = view.findViewById(R.id.mangaRefresh);
 
-        manga_page = 1;
-        ResponseData(manga_page);
-        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                ResponseData(1);
-                Loading.setVisibility(View.GONE);
-            }
-        });
+        viewPager = view.findViewById(R.id.ViewPagerManga);
+        tabLayout = view.findViewById(R.id.topMangaTabLayout);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+
+        adapter.addFragment(new TopAllMangaFragment(), "Top Manga");
+        adapter.addFragment(new TopNovelsFragment(), "Top Novels");
+        adapter.addFragment(new TopOneshotsFragment(), "Top One-shots");
+
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+
 
         return view;
     }
 
-    private void ResponseData(int manga_page){
-        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
-        Loading.setVisibility(View.VISIBLE);
-        recyclerView.setVisibility(View.GONE);
-        apiService.getAllManga(manga_page)
-                .enqueue(new Callback<Manga>() {
-                    @Override
-                    public void onResponse(Call<Manga> call, Response<Manga> response) {
-                        List<MangaItem> items = response.body().getTopMangaItems();
-
-                        Refresh.setRefreshing(false);
-                        Loading.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
-                        if (items != null){
-                            layoutAdapter = new MangaAdapter(items);
-                            recyclerView.setAdapter(layoutAdapter);
-                        }else{
-                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Manga> call, Throwable t) {
-                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
-                        Loading.setVisibility(View.GONE);
-                        Refresh.setRefreshing(false);
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
-                            }
-                        }, 4000);
-                    }
-                });
-    }
 
 }

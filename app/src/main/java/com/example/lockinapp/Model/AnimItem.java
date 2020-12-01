@@ -4,6 +4,24 @@ import com.google.gson.annotations.SerializedName;
 
 public class AnimItem {
 
+
+    public AnimItem() {
+    }
+
+    public AnimItem(double score, String end_date, String imageUrl, String start_date, int members, int rank, int malId, String title, String type, String url, int episodes) {
+        this.score = score;
+        this.end_date = end_date;
+        this.imageUrl = imageUrl;
+        this.start_date = start_date;
+        this.members = members;
+        this.rank = rank;
+        this.malId = malId;
+        this.title = title;
+        this.type = type;
+        this.url = url;
+        this.episodes = episodes;
+    }
+
     @SerializedName("score")
     private double score;
 

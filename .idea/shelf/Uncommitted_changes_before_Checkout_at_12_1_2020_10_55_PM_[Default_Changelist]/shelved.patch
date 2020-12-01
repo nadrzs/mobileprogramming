@@ -1,0 +1,2054 @@
+Index: app/src/main/java/com/example/lockinapp/AnimeAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.lockinapp;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.example.lockinapp.Model.AnimItem;\r\nimport com.squareup.picasso.Picasso;\r\n\r\nimport java.text.DecimalFormat;\r\nimport java.text.DecimalFormatSymbols;\r\nimport java.util.List;\r\n\r\nimport butterknife.BindView;\r\nimport butterknife.ButterKnife;\r\n\r\npublic class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder> {\r\n\r\n    List<AnimItem> animeList;\r\n\r\n    public AnimeAdapter(List<AnimItem> animItems) {\r\n        this.animeList = animItems;\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n\r\n        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.anime_layout, parent, false);\r\n        return new MyViewHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {\r\n\r\n        final AnimItem item = animeList.get(position);\r\n\r\n        DecimalFormat members = (DecimalFormat) DecimalFormat.getNumberInstance();\r\n        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols();\r\n        formatSymbols.setGroupingSeparator('.');\r\n\r\n        members.setDecimalFormatSymbols(formatSymbols);\r\n\r\n        Picasso.get().load(item.getImageUrl()).into(holder.animeImage);\r\n        holder.animeTitle.setText(item.getTitle());\r\n        holder.animeType.setText(String.format(\"%s (%d)\", item.getType(), item.getEpisodes()));\r\n        holder.animeStartEnd.setText(String.format(\"%s - %s\", item.getStart_date(), item.getEnd_date()));\r\n        holder.animeMembers.setText(String.format(\"%s Members\", members.format(item.getMembers())));\r\n        holder.animeRating.setText(String.valueOf(item.getScore()));\r\n\r\n//        holder.itemView.setOnClickListener(new View.OnClickListener() {\r\n//            @Override\r\n//            public void onClick(View view) {\r\n//\r\n//            }\r\n//        });\r\n\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return animeList.size();\r\n    }\r\n\r\n\r\n    public class MyViewHolder extends RecyclerView.ViewHolder {\r\n\r\n        @BindView(R.id.anime_image)\r\n        ImageView animeImage;\r\n        @BindView(R.id.anime_title)\r\n        TextView animeTitle;\r\n        @BindView(R.id.anime_type)\r\n        TextView animeType;\r\n        @BindView(R.id.anime_startEnd)\r\n        TextView animeStartEnd;\r\n        @BindView(R.id.anime_members)\r\n        TextView animeMembers;\r\n        @BindView(R.id.anime_rating)\r\n        TextView animeRating;\r\n        @BindView(R.id.rating_image)\r\n        ImageView ratingImage;\r\n\r\n        public MyViewHolder(View view) {\r\n            super(view);\r\n            ButterKnife.bind(this, itemView);\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/AnimeAdapter.java	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/java/com/example/lockinapp/AnimeAdapter.java	(date 1606830651467)
+@@ -1,5 +1,6 @@
+ package com.example.lockinapp;
+ 
++import android.content.Context;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+@@ -9,6 +10,7 @@
+ import androidx.annotation.NonNull;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
++import com.example.lockinapp.Data.DataBaseHelper;
+ import com.example.lockinapp.Model.AnimItem;
+ import com.squareup.picasso.Picasso;
+ 
+@@ -22,8 +24,10 @@
+ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder> {
+ 
+     List<AnimItem> animeList;
++    Context context;
+ 
+-    public AnimeAdapter(List<AnimItem> animItems) {
++    public AnimeAdapter(Context context, List<AnimItem> animItems) {
++        this.context = context;
+         this.animeList = animItems;
+     }
+ 
+@@ -39,6 +43,7 @@
+     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+ 
+         final AnimItem item = animeList.get(position);
++        AnimItem animItem;
+ 
+         DecimalFormat members = (DecimalFormat) DecimalFormat.getNumberInstance();
+         DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols();
+@@ -53,6 +58,9 @@
+         holder.animeMembers.setText(String.format("%s Members", members.format(item.getMembers())));
+         holder.animeRating.setText(String.valueOf(item.getScore()));
+ 
++//        DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
++//        dataBaseHelper.addOne();
++
+ //        holder.itemView.setOnClickListener(new View.OnClickListener() {
+ //            @Override
+ //            public void onClick(View view) {
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n<androidx.drawerlayout.widget.DrawerLayout android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:id=\"@+id/drawerLayout\">\r\n\r\n\r\n    <RelativeLayout xmlns:tools=\"http://schemas.android.com/tools\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        tools:context=\".MainActivity\">\r\n\r\n\r\n\r\n        <FrameLayout\r\n            android:id=\"@+id/fragment_container\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_above=\"@+id/bottom_navigation\"/>\r\n\r\n\r\n        <!-- Bottom Navigation -->\r\n        <com.google.android.material.bottomnavigation.BottomNavigationView\r\n            android:id=\"@+id/bottom_navigation\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_alignParentBottom=\"true\"\r\n            android:background=\"#0000AF\"\r\n            android:elevation=\"50dp\"\r\n            app:elevation=\"50dp\"\r\n            app:itemIconSize=\"30dp\"\r\n            app:menu=\"@menu/bottom_navigation\"\r\n            app:itemIconTint=\"#fff\"\r\n            app:itemTextColor=\"#fff\"/>\r\n        <!-- Akhir Bottom Navigation -->\r\n\r\n    </RelativeLayout>\r\n\r\n    <com.google.android.material.navigation.NavigationView\r\n        app:headerLayout=\"@layout/header\"\r\n        android:id=\"@+id/nav_view\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"match_parent\"\r\n        android:background=\"#565656\"\r\n        app:itemTextColor=\"#fff\"\r\n        app:itemIconTint=\"#fff\"\r\n        app:menu=\"@menu/nav_drawer\"\r\n        android:fitsSystemWindows=\"true\"\r\n        app:itemTextAppearance=\"?android:attr/textAppearanceMedium\"\r\n        android:layout_gravity=\"start\"/>\r\n\r\n</androidx.drawerlayout.widget.DrawerLayout>\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/res/layout/activity_main.xml	(date 1606776872936)
+@@ -52,6 +52,7 @@
+         app:itemTextAppearance="?android:attr/textAppearanceMedium"
+         android:layout_gravity="start"/>
+ 
++
+ </androidx.drawerlayout.widget.DrawerLayout>
+ 
+ 
+Index: app/src/main/java/com/example/lockinapp/Data/DataBaseHelper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Data/DataBaseHelper.java	(date 1606828451844)
++++ app/src/main/java/com/example/lockinapp/Data/DataBaseHelper.java	(date 1606828451844)
+@@ -0,0 +1,82 @@
++package com.example.lockinapp.Data;
++
++import android.content.ContentValues;
++import android.content.Context;
++import android.database.Cursor;
++import android.database.sqlite.SQLiteDatabase;
++import android.database.sqlite.SQLiteOpenHelper;
++
++import androidx.annotation.Nullable;
++
++import com.example.lockinapp.Model.AnimItem;
++
++import org.json.JSONException;
++
++import java.io.IOException;
++
++public class DataBaseHelper extends SQLiteOpenHelper {
++
++    private static final int DATABASE_VERSION = 1;
++    private static final String DATABASE_NAME = "animalist.db";
++    private static final String TABLE_ANIME = "ANIME_TABLE";
++    private static final String ANIME_RANK = "rank";
++    private static final String ANIME_TITLE = "title";
++    private static final String ANIME_TYPE = "type";
++    private static final String ANIME_EPISODES = "episodes";
++    private static final String ANIME_START_DATE = "start_date";
++    private static final String ANIME_END_DATE = "end_date";
++    private static final String ANIME_SCORE = "score";
++    private static final String ANIME_MEMBER = "members";
++
++    public DataBaseHelper(@Nullable Context context) {
++        super(context, DATABASE_NAME, null, DATABASE_VERSION);
++    }
++
++    @Override
++    public void onCreate(SQLiteDatabase db) {
++
++
++        String CREATE_ANIME_TABLE = "CREATE TABLE " + TABLE_ANIME + " (" + ANIME_RANK + " INTEGER PRIMARY KEY, " + ANIME_TITLE + " TEXT, "
++                + ANIME_TYPE + " TEXT, " + ANIME_EPISODES + " INTEGER, " + ANIME_START_DATE + " TEXT, " + ANIME_END_DATE + " TEXT, "
++                + ANIME_SCORE + " REAL, " + ANIME_MEMBER + " INTEGER)";
++
++        db.execSQL(CREATE_ANIME_TABLE);
++
++    }
++
++    @Override
++    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
++
++    }
++
++    public boolean addOne(AnimItem animItem){
++
++        SQLiteDatabase db = this.getWritableDatabase();
++        ContentValues cv = new ContentValues();
++
++        cv.put(ANIME_RANK, animItem.getRank());
++        cv.put(ANIME_TITLE, animItem.getTitle());
++        cv.put(ANIME_TYPE, animItem.getType());
++        cv.put(ANIME_EPISODES, animItem.getEpisodes());
++        cv.put(ANIME_START_DATE, animItem.getStart_date());
++        cv.put(ANIME_END_DATE, animItem.getEnd_date());
++        cv.put(ANIME_SCORE, animItem.getScore());
++        cv.put(ANIME_MEMBER, animItem.getMembers());
++
++        long insert = db.insert(TABLE_ANIME, null, cv);
++
++        if(insert == -1){
++            return false;
++        }else{
++            return true;
++        }
++
++    }
++
++    public Cursor getListContent(){
++        SQLiteDatabase db = this.getWritableDatabase();
++        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_ANIME, null);
++        return data;
++    }
++
++}
+Index: app/src/main/java/com/example/lockinapp/Fragment/TopUpcomingFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Fragment/TopUpcomingFragment.java	(date 1606820144191)
++++ app/src/main/java/com/example/lockinapp/Fragment/TopUpcomingFragment.java	(date 1606820144191)
+@@ -0,0 +1,106 @@
++package com.example.lockinapp.Fragment;
++
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
++
++import android.os.Handler;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ProgressBar;
++import android.widget.Toast;
++
++import com.example.lockinapp.AnimeAdapter;
++import com.example.lockinapp.Data.ApiService;
++import com.example.lockinapp.Data.DataRetrofit;
++import com.example.lockinapp.Model.AnimItem;
++import com.example.lockinapp.Model.Anime;
++import com.example.lockinapp.R;
++import com.google.android.material.snackbar.Snackbar;
++
++import java.util.List;
++
++import retrofit2.Call;
++import retrofit2.Callback;
++import retrofit2.Response;
++
++public class TopUpcomingFragment extends Fragment {
++
++    private View view;
++    private RecyclerView recyclerView;
++    private RecyclerView.Adapter layoutAdapter;
++    private ProgressBar Loading;
++    private SwipeRefreshLayout Refresh;
++
++    public TopUpcomingFragment(){
++
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++
++        view = inflater.inflate(R.layout.fragment_top_upcoming, container, false);
++
++        recyclerView = view.findViewById(R.id.AnimeRecycler);
++
++        recyclerView.setHasFixedSize(true);
++        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
++        Loading = view.findViewById(R.id.Loading);
++        Refresh = view.findViewById(R.id.Refresh);
++
++        ResponseData();
++        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
++            @Override
++            public void onRefresh() {
++                ResponseData();
++                Loading.setVisibility(View.GONE);
++            }
++        });
++
++        return view;
++    }
++
++    private void ResponseData(){
++        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
++        Loading.setVisibility(View.VISIBLE);
++        recyclerView.setVisibility(View.GONE);
++        apiService.getTopUpcoming()
++                .enqueue(new Callback<Anime>() {
++                    @Override
++                    public void onResponse(Call<Anime> call, Response<Anime> response) {
++                        List<AnimItem> items = response.body().getTopAnime();
++
++                        Refresh.setRefreshing(false);
++                        Loading.setVisibility(View.GONE);
++                        recyclerView.setVisibility(View.VISIBLE);
++                        if(items != null){
++                            layoutAdapter = new AnimeAdapter(getContext(), items);
++                            recyclerView.setAdapter(layoutAdapter);
++                        }else {
++                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
++                        }
++
++                    }
++
++                    @Override
++                    public void onFailure(Call<Anime> call, Throwable t) {
++                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
++                        Loading.setVisibility(View.GONE);
++                        Refresh.setRefreshing(false);
++                        final Handler handler = new Handler();
++                        handler.postDelayed(new Runnable() {
++                            @Override
++                            public void run() {
++                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
++                            }
++                        },4000);
++                    }
++                });
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_top_upcoming.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_top_upcoming.xml	(date 1606800415755)
++++ app/src/main/res/layout/fragment_top_upcoming.xml	(date 1606800415755)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".Fragment.TopUpcomingFragment">
++
++    <ProgressBar
++        android:id="@+id/Loading"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="center"/>
++
++    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
++        android:id="@+id/Refresh"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.recyclerview.widget.RecyclerView
++            android:id="@+id/AnimeRecycler"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"/>
++
++    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/Fragment/TopTvSeriesFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Fragment/TopTvSeriesFragment.java	(date 1606820117365)
++++ app/src/main/java/com/example/lockinapp/Fragment/TopTvSeriesFragment.java	(date 1606820117365)
+@@ -0,0 +1,106 @@
++package com.example.lockinapp.Fragment;
++
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
++
++import android.os.Handler;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ProgressBar;
++import android.widget.Toast;
++
++import com.example.lockinapp.AnimeAdapter;
++import com.example.lockinapp.Data.ApiService;
++import com.example.lockinapp.Data.DataRetrofit;
++import com.example.lockinapp.Model.AnimItem;
++import com.example.lockinapp.Model.Anime;
++import com.example.lockinapp.R;
++import com.google.android.material.snackbar.Snackbar;
++
++import java.util.List;
++
++import retrofit2.Call;
++import retrofit2.Callback;
++import retrofit2.Response;
++
++
++public class TopTvSeriesFragment extends Fragment {
++
++    private View view;
++    private RecyclerView recyclerView;
++    private RecyclerView.Adapter layoutAdapter;
++    private ProgressBar Loading;
++    private SwipeRefreshLayout Refresh;
++
++    public TopTvSeriesFragment(){
++
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++
++        view = inflater.inflate(R.layout.fragment_top_tv_series, container, false);
++        recyclerView = view.findViewById(R.id.AnimeRecycler);
++
++        recyclerView.setHasFixedSize(true);
++        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
++        Loading = view.findViewById(R.id.Loading);
++        Refresh = view.findViewById(R.id.Refresh);
++
++        ResponseData();
++        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
++            @Override
++            public void onRefresh() {
++                ResponseData();
++                Loading.setVisibility(View.GONE);
++            }
++        });
++
++        return view;
++    }
++
++    private void ResponseData(){
++        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
++        Loading.setVisibility(View.VISIBLE);
++        recyclerView.setVisibility(View.GONE);
++        apiService.getTopTv()
++                .enqueue(new Callback<Anime>() {
++                    @Override
++                    public void onResponse(Call<Anime> call, Response<Anime> response) {
++                        List<AnimItem> items = response.body().getTopAnime();
++
++                        Refresh.setRefreshing(false);
++                        Loading.setVisibility(View.GONE);
++                        recyclerView.setVisibility(View.VISIBLE);
++                        if(items != null){
++                            layoutAdapter = new AnimeAdapter(getContext(), items);
++                            recyclerView.setAdapter(layoutAdapter);
++                        }else {
++                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
++                        }
++
++                    }
++
++                    @Override
++                    public void onFailure(Call<Anime> call, Throwable t) {
++                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
++                        Loading.setVisibility(View.GONE);
++                        Refresh.setRefreshing(false);
++                        final Handler handler = new Handler();
++                        handler.postDelayed(new Runnable() {
++                            @Override
++                            public void run() {
++                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
++                            }
++                        },4000);
++                    }
++                });
++    }
++
++}
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  \r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n  </component>\r\n  \r\n</project>\r\n\r\n    <!--$PROJECT_DIR$-->\r\n\r\n</project>\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ .idea/vcs.xml	(date 1606741506554)
+@@ -1,13 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  
+   <component name="VcsDirectoryMappings">
+-    <mapping directory="" vcs="Git" />
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+   </component>
+-  
+-</project>
+-
+-    <!--$PROJECT_DIR$-->
+-
+-</project>
+-
++</project>
+\ No newline at end of file
+Index: app/src/main/res/drawable/custom_button_active.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/custom_button_active.xml	(date 1606779157771)
++++ app/src/main/res/drawable/custom_button_active.xml	(date 1606779157771)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android"
++    android:shape="rectangle">
++
++    <solid android:color="@color/colorPrimary" />
++
++    <corners android:radius="5dp" />
++
++
++
++</shape>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_top_tv_series.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_top_tv_series.xml	(date 1606800951512)
++++ app/src/main/res/layout/fragment_top_tv_series.xml	(date 1606800951512)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".Fragment.TopTvSeriesFragment">
++
++    <ProgressBar
++        android:id="@+id/Loading"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="center"/>
++
++    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
++        android:id="@+id/Refresh"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.recyclerview.widget.RecyclerView
++            android:id="@+id/AnimeRecycler"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"/>
++
++    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++
++</FrameLayout>
+\ No newline at end of file
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Sat Nov 28 19:35:22 ICT 2020\r\ndistributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-6.5-bin.zip\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1606740115118)
+@@ -1,6 +1,6 @@
+-#Sat Nov 28 19:35:22 ICT 2020
++#Mon Nov 30 21:41:55 JST 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-bin.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-all.zip
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_8\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ .idea/misc.xml	(date 1606743483018)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+Index: app/src/main/res/drawable/custom_button_deactive.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/custom_button_deactive.xml	(date 1606779601966)
++++ app/src/main/res/drawable/custom_button_deactive.xml	(date 1606779601966)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android"
++    android:shape="rectangle">
++
++    <solid android:color="#fff" />
++
++    <corners android:radius="5dp" />
++
++    <stroke android:color="@color/colorPrimary" android:width="1dp"/>
++
++
++</shape>
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/Fragment/TopAllAnimeFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Fragment/TopAllAnimeFragment.java	(date 1606820065642)
++++ app/src/main/java/com/example/lockinapp/Fragment/TopAllAnimeFragment.java	(date 1606820065642)
+@@ -0,0 +1,108 @@
++package com.example.lockinapp.Fragment;
++
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
++
++import android.os.Handler;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ProgressBar;
++import android.widget.Toast;
++
++import com.example.lockinapp.AnimeAdapter;
++import com.example.lockinapp.Data.ApiService;
++import com.example.lockinapp.Data.DataBaseHelper;
++import com.example.lockinapp.Data.DataRetrofit;
++import com.example.lockinapp.Model.AnimItem;
++import com.example.lockinapp.Model.Anime;
++import com.example.lockinapp.R;
++import com.google.android.material.snackbar.Snackbar;
++
++import java.util.List;
++
++import retrofit2.Call;
++import retrofit2.Callback;
++import retrofit2.Response;
++
++public class TopAllAnimeFragment extends Fragment {
++
++    private View view;
++    private RecyclerView recyclerView;
++    private RecyclerView.Adapter layoutAdapter;
++    private int page;
++    private ProgressBar Loading;
++    private SwipeRefreshLayout Refresh;
++
++    public TopAllAnimeFragment(){
++
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
++
++        view = inflater.inflate(R.layout.fragment_top_all, container, false);
++        recyclerView = view.findViewById(R.id.AnimeRecycler);
++
++        recyclerView.setHasFixedSize(true);
++        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
++        Loading = view.findViewById(R.id.Loading);
++        Refresh = view.findViewById(R.id.Refresh);
++        page = 1;
++
++        ResponseData(page);
++        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
++            @Override
++            public void onRefresh() {
++                ResponseData(1);
++                Loading.setVisibility(View.GONE);
++            }
++        });
++
++
++        return view;
++    }
++
++    private void ResponseData(int page){
++        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
++        Loading.setVisibility(View.VISIBLE);
++        recyclerView.setVisibility(View.GONE);
++        apiService.getAllAnime(page)
++                .enqueue(new Callback<Anime>() {
++                    @Override
++                    public void onResponse(Call<Anime> call, Response<Anime> response) {
++                        List<AnimItem> items = response.body().getTopAnime();
++
++                        Refresh.setRefreshing(false);
++                        Loading.setVisibility(View.GONE);
++                        recyclerView.setVisibility(View.VISIBLE);
++                        if(items != null){
++                            layoutAdapter = new AnimeAdapter(getContext(), items);
++                            recyclerView.setAdapter(layoutAdapter);
++                        }else {
++                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
++                        }
++
++                    }
++
++                    @Override
++                    public void onFailure(Call<Anime> call, Throwable t) {
++                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
++                        Loading.setVisibility(View.GONE);
++                        Refresh.setRefreshing(false);
++                        final Handler handler = new Handler();
++                        handler.postDelayed(new Runnable() {
++                            @Override
++                            public void run() {
++                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
++                            }
++                        },4000);
++                    }
++                });
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_top_all.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_top_all.xml	(date 1606803603805)
++++ app/src/main/res/layout/fragment_top_all.xml	(date 1606803603805)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".Fragment.TopAllAnimeFragment">
++
++    <ProgressBar
++        android:id="@+id/Loading"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="center"/>
++
++    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
++        android:id="@+id/Refresh"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.recyclerview.widget.RecyclerView
++            android:id="@+id/AnimeRecycler"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"/>
++
++    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/Fragment/TopMovieFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Fragment/TopMovieFragment.java	(date 1606820103333)
++++ app/src/main/java/com/example/lockinapp/Fragment/TopMovieFragment.java	(date 1606820103333)
+@@ -0,0 +1,106 @@
++package com.example.lockinapp.Fragment;
++
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
++
++import android.os.Handler;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ProgressBar;
++import android.widget.Toast;
++
++import com.example.lockinapp.AnimeAdapter;
++import com.example.lockinapp.Data.ApiService;
++import com.example.lockinapp.Data.DataRetrofit;
++import com.example.lockinapp.Model.AnimItem;
++import com.example.lockinapp.Model.Anime;
++import com.example.lockinapp.R;
++import com.google.android.material.snackbar.Snackbar;
++
++import java.util.List;
++
++import retrofit2.Call;
++import retrofit2.Callback;
++import retrofit2.Response;
++
++public class TopMovieFragment extends Fragment {
++
++    private View view;
++    private RecyclerView recyclerView;
++    private RecyclerView.Adapter layoutAdapter;
++    private ProgressBar Loading;
++    private SwipeRefreshLayout Refresh;
++
++    public TopMovieFragment(){
++
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++
++        view = inflater.inflate(R.layout.fragment_top_movie, container, false);
++
++        recyclerView = view.findViewById(R.id.AnimeRecycler);
++
++        recyclerView.setHasFixedSize(true);
++        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
++        Loading = view.findViewById(R.id.Loading);
++        Refresh = view.findViewById(R.id.Refresh);
++
++        ResponseData();
++        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
++            @Override
++            public void onRefresh() {
++                ResponseData();
++                Loading.setVisibility(View.GONE);
++            }
++        });
++
++        return view;
++    }
++
++    private void ResponseData(){
++        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
++        Loading.setVisibility(View.VISIBLE);
++        recyclerView.setVisibility(View.GONE);
++        apiService.getTopMovie()
++                .enqueue(new Callback<Anime>() {
++                    @Override
++                    public void onResponse(Call<Anime> call, Response<Anime> response) {
++                        List<AnimItem> items = response.body().getTopAnime();
++
++                        Refresh.setRefreshing(false);
++                        Loading.setVisibility(View.GONE);
++                        recyclerView.setVisibility(View.VISIBLE);
++                        if(items != null){
++                            layoutAdapter = new AnimeAdapter(getContext(),items);
++                            recyclerView.setAdapter(layoutAdapter);
++                        }else {
++                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
++                        }
++
++                    }
++
++                    @Override
++                    public void onFailure(Call<Anime> call, Throwable t) {
++                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
++                        Loading.setVisibility(View.GONE);
++                        Refresh.setRefreshing(false);
++                        final Handler handler = new Handler();
++                        handler.postDelayed(new Runnable() {
++                            @Override
++                            public void run() {
++                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
++                            }
++                        },4000);
++                    }
++                });
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/MangaTab.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.lockinapp;\r\n\r\nimport android.os.Bundle;\r\nimport android.os.Handler;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ProgressBar;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\nimport androidx.swiperefreshlayout.widget.SwipeRefreshLayout;\r\n\r\nimport com.example.lockinapp.Data.ApiService;\r\nimport com.example.lockinapp.Data.DataRetrofit;\r\nimport com.example.lockinapp.Model.Manga;\r\nimport com.example.lockinapp.Model.MangaItem;\r\nimport com.google.android.material.snackbar.Snackbar;\r\n\r\nimport java.util.List;\r\n\r\nimport retrofit2.Call;\r\nimport retrofit2.Callback;\r\nimport retrofit2.Response;\r\n\r\npublic class MangaTab extends Fragment {\r\n\r\n    private View view;\r\n    private RecyclerView recyclerView;\r\n    private RecyclerView.Adapter layoutAdapter;\r\n    private int manga_page;\r\n    private ProgressBar Loading;\r\n    private SwipeRefreshLayout Refresh;\r\n\r\n    public MangaTab(){\r\n\r\n    }\r\n\r\n    @Nullable\r\n    @Override\r\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\r\n\r\n        view = inflater.inflate(R.layout.manga_tab, container, false);\r\n        recyclerView = view.findViewById(R.id.MangaRecycler);\r\n        recyclerView.setHasFixedSize(true);\r\n        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));\r\n        Loading = view.findViewById(R.id.mangaLoading);\r\n        Refresh = view.findViewById(R.id.mangaRefresh);\r\n\r\n        manga_page = 1;\r\n        ResponseData(manga_page);\r\n        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {\r\n            @Override\r\n            public void onRefresh() {\r\n                ResponseData(1);\r\n                Loading.setVisibility(View.GONE);\r\n            }\r\n        });\r\n\r\n        return view;\r\n    }\r\n\r\n    private void ResponseData(int manga_page){\r\n        ApiService apiService = DataRetrofit.getData().create(ApiService.class);\r\n        Loading.setVisibility(View.VISIBLE);\r\n        recyclerView.setVisibility(View.GONE);\r\n        apiService.getAllManga(manga_page)\r\n                .enqueue(new Callback<Manga>() {\r\n                    @Override\r\n                    public void onResponse(Call<Manga> call, Response<Manga> response) {\r\n                        List<MangaItem> items = response.body().getTopMangaItems();\r\n\r\n                        Refresh.setRefreshing(false);\r\n                        Loading.setVisibility(View.GONE);\r\n                        recyclerView.setVisibility(View.VISIBLE);\r\n                        if (items != null){\r\n                            layoutAdapter = new MangaAdapter(items);\r\n                            recyclerView.setAdapter(layoutAdapter);\r\n                        }else{\r\n                            Toast.makeText(getActivity(), \"Failed Get Dat !\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    }\r\n\r\n                    @Override\r\n                    public void onFailure(Call<Manga> call, Throwable t) {\r\n                        Toast.makeText(getActivity(), \"Low Connection\", Toast.LENGTH_SHORT).show();\r\n                        Loading.setVisibility(View.GONE);\r\n                        Refresh.setRefreshing(false);\r\n                        final Handler handler = new Handler();\r\n                        handler.postDelayed(new Runnable() {\r\n                            @Override\r\n                            public void run() {\r\n                                Snackbar.make(getView(), \"Check Connection\", Snackbar.LENGTH_LONG).show();\r\n                            }\r\n                        }, 4000);\r\n                    }\r\n                });\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/MangaTab.java	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/java/com/example/lockinapp/MangaTab.java	(date 1606805407654)
+@@ -14,12 +14,22 @@
+ import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
++import androidx.viewpager.widget.ViewPager;
+ 
+ import com.example.lockinapp.Data.ApiService;
+ import com.example.lockinapp.Data.DataRetrofit;
++import com.example.lockinapp.Fragment.TopAiringFragment;
++import com.example.lockinapp.Fragment.TopAllAnimeFragment;
++import com.example.lockinapp.Fragment.TopAllMangaFragment;
++import com.example.lockinapp.Fragment.TopMovieFragment;
++import com.example.lockinapp.Fragment.TopNovelsFragment;
++import com.example.lockinapp.Fragment.TopOneshotsFragment;
++import com.example.lockinapp.Fragment.TopTvSeriesFragment;
++import com.example.lockinapp.Fragment.TopUpcomingFragment;
+ import com.example.lockinapp.Model.Manga;
+ import com.example.lockinapp.Model.MangaItem;
+ import com.google.android.material.snackbar.Snackbar;
++import com.google.android.material.tabs.TabLayout;
+ 
+ import java.util.List;
+ 
+@@ -30,11 +40,8 @@
+ public class MangaTab extends Fragment {
+ 
+     private View view;
+-    private RecyclerView recyclerView;
+-    private RecyclerView.Adapter layoutAdapter;
+-    private int manga_page;
+-    private ProgressBar Loading;
+-    private SwipeRefreshLayout Refresh;
++    private ViewPager viewPager;
++    private TabLayout tabLayout;
+ 
+     public MangaTab(){
+ 
+@@ -45,60 +52,21 @@
+     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+ 
+         view = inflater.inflate(R.layout.manga_tab, container, false);
+-        recyclerView = view.findViewById(R.id.MangaRecycler);
+-        recyclerView.setHasFixedSize(true);
+-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+-        Loading = view.findViewById(R.id.mangaLoading);
+-        Refresh = view.findViewById(R.id.mangaRefresh);
++
++        viewPager = view.findViewById(R.id.ViewPagerManga);
++        tabLayout = view.findViewById(R.id.topMangaTabLayout);
++        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+ 
+-        manga_page = 1;
+-        ResponseData(manga_page);
+-        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+-            @Override
+-            public void onRefresh() {
+-                ResponseData(1);
+-                Loading.setVisibility(View.GONE);
+-            }
+-        });
++        adapter.addFragment(new TopAllMangaFragment(), "Top Manga");
++        adapter.addFragment(new TopNovelsFragment(), "Top Novels");
++        adapter.addFragment(new TopOneshotsFragment(), "Top One-shots");
++
++        viewPager.setAdapter(adapter);
++        tabLayout.setupWithViewPager(viewPager);
++
+ 
+         return view;
+     }
+ 
+-    private void ResponseData(int manga_page){
+-        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
+-        Loading.setVisibility(View.VISIBLE);
+-        recyclerView.setVisibility(View.GONE);
+-        apiService.getAllManga(manga_page)
+-                .enqueue(new Callback<Manga>() {
+-                    @Override
+-                    public void onResponse(Call<Manga> call, Response<Manga> response) {
+-                        List<MangaItem> items = response.body().getTopMangaItems();
+-
+-                        Refresh.setRefreshing(false);
+-                        Loading.setVisibility(View.GONE);
+-                        recyclerView.setVisibility(View.VISIBLE);
+-                        if (items != null){
+-                            layoutAdapter = new MangaAdapter(items);
+-                            recyclerView.setAdapter(layoutAdapter);
+-                        }else{
+-                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
+-                        }
+-                    }
+-
+-                    @Override
+-                    public void onFailure(Call<Manga> call, Throwable t) {
+-                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
+-                        Loading.setVisibility(View.GONE);
+-                        Refresh.setRefreshing(false);
+-                        final Handler handler = new Handler();
+-                        handler.postDelayed(new Runnable() {
+-                            @Override
+-                            public void run() {
+-                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
+-                            }
+-                        }, 4000);
+-                    }
+-                });
+-    }
+ 
+ }
+Index: app/src/main/res/layout/fragment_top_movie.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_top_movie.xml	(date 1606802711202)
++++ app/src/main/res/layout/fragment_top_movie.xml	(date 1606802711202)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".Fragment.TopMovieFragment">
++
++    <ProgressBar
++        android:id="@+id/Loading"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="center"/>
++
++    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
++        android:id="@+id/Refresh"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.recyclerview.widget.RecyclerView
++            android:id="@+id/AnimeRecycler"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"/>
++
++    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/Fragment/TopAllMangaFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Fragment/TopAllMangaFragment.java	(date 1606804182942)
++++ app/src/main/java/com/example/lockinapp/Fragment/TopAllMangaFragment.java	(date 1606804182942)
+@@ -0,0 +1,103 @@
++package com.example.lockinapp.Fragment;
++
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
++
++import android.os.Handler;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ProgressBar;
++import android.widget.Toast;
++
++import com.example.lockinapp.Data.ApiService;
++import com.example.lockinapp.Data.DataRetrofit;
++import com.example.lockinapp.MangaAdapter;
++import com.example.lockinapp.Model.Manga;
++import com.example.lockinapp.Model.MangaItem;
++import com.example.lockinapp.R;
++import com.google.android.material.snackbar.Snackbar;
++
++import java.util.List;
++
++import retrofit2.Call;
++import retrofit2.Callback;
++import retrofit2.Response;
++
++public class TopAllMangaFragment extends Fragment {
++
++    View view;
++    private RecyclerView recyclerView;
++    private RecyclerView.Adapter layoutAdapter;
++    private int manga_page;
++    private ProgressBar Loading;
++    private SwipeRefreshLayout Refresh;
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++
++        view = inflater.inflate(R.layout.fragment_top_all_manga, container, false);
++
++        recyclerView = view.findViewById(R.id.MangaRecycler);
++        recyclerView.setHasFixedSize(true);
++        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
++        Loading = view.findViewById(R.id.mangaLoading);
++        Refresh = view.findViewById(R.id.mangaRefresh);
++
++        manga_page = 1;
++        ResponseData(manga_page);
++        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
++            @Override
++            public void onRefresh() {
++                ResponseData(1);
++                Loading.setVisibility(View.GONE);
++            }
++        });
++
++        return view;
++    }
++
++    private void ResponseData(int manga_page){
++        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
++        Loading.setVisibility(View.VISIBLE);
++        recyclerView.setVisibility(View.GONE);
++        apiService.getAllManga(manga_page)
++                .enqueue(new Callback<Manga>() {
++                    @Override
++                    public void onResponse(Call<Manga> call, Response<Manga> response) {
++                        List<MangaItem> items = response.body().getTopMangaItems();
++
++                        Refresh.setRefreshing(false);
++                        Loading.setVisibility(View.GONE);
++                        recyclerView.setVisibility(View.VISIBLE);
++                        if (items != null){
++                            layoutAdapter = new MangaAdapter(items);
++                            recyclerView.setAdapter(layoutAdapter);
++                        }else{
++                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
++                        }
++                    }
++
++                    @Override
++                    public void onFailure(Call<Manga> call, Throwable t) {
++                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
++                        Loading.setVisibility(View.GONE);
++                        Refresh.setRefreshing(false);
++                        final Handler handler = new Handler();
++                        handler.postDelayed(new Runnable() {
++                            @Override
++                            public void run() {
++                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
++                            }
++                        }, 4000);
++                    }
++                });
++    }
++
++
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_top_all_manga.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_top_all_manga.xml	(date 1606804256938)
++++ app/src/main/res/layout/fragment_top_all_manga.xml	(date 1606804256938)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".Fragment.TopAllMangaFragment">
++
++    <ProgressBar
++        android:id="@+id/mangaLoading"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="center"/>
++
++    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
++        android:id="@+id/mangaRefresh"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.recyclerview.widget.RecyclerView
++            android:id="@+id/MangaRecycler"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"/>
++
++    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/Fragment/TopNovelsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Fragment/TopNovelsFragment.java	(date 1606805017483)
++++ app/src/main/java/com/example/lockinapp/Fragment/TopNovelsFragment.java	(date 1606805017483)
+@@ -0,0 +1,100 @@
++package com.example.lockinapp.Fragment;
++
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
++
++import android.os.Handler;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ProgressBar;
++import android.widget.Toast;
++
++import com.example.lockinapp.Data.ApiService;
++import com.example.lockinapp.Data.DataRetrofit;
++import com.example.lockinapp.MangaAdapter;
++import com.example.lockinapp.Model.Manga;
++import com.example.lockinapp.Model.MangaItem;
++import com.example.lockinapp.R;
++import com.google.android.material.snackbar.Snackbar;
++
++import java.util.List;
++
++import retrofit2.Call;
++import retrofit2.Callback;
++import retrofit2.Response;
++
++public class TopNovelsFragment extends Fragment {
++
++    View view;
++    private RecyclerView recyclerView;
++    private RecyclerView.Adapter layoutAdapter;
++    private ProgressBar Loading;
++    private SwipeRefreshLayout Refresh;
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        view = inflater.inflate(R.layout.fragment_top_novels, container, false);;
++
++        recyclerView = view.findViewById(R.id.MangaRecycler);
++        recyclerView.setHasFixedSize(true);
++        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
++        Loading = view.findViewById(R.id.mangaLoading);
++        Refresh = view.findViewById(R.id.mangaRefresh);
++
++        ResponseData();
++        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
++            @Override
++            public void onRefresh() {
++                ResponseData();
++                Loading.setVisibility(View.GONE);
++            }
++        });
++
++        return view;
++    }
++
++    private void ResponseData(){
++        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
++        Loading.setVisibility(View.VISIBLE);
++        recyclerView.setVisibility(View.GONE);
++        apiService.getTopNovels()
++                .enqueue(new Callback<Manga>() {
++                    @Override
++                    public void onResponse(Call<Manga> call, Response<Manga> response) {
++                        List<MangaItem> items = response.body().getTopMangaItems();
++
++                        Refresh.setRefreshing(false);
++                        Loading.setVisibility(View.GONE);
++                        recyclerView.setVisibility(View.VISIBLE);
++                        if (items != null){
++                            layoutAdapter = new MangaAdapter(items);
++                            recyclerView.setAdapter(layoutAdapter);
++                        }else{
++                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
++                        }
++                    }
++
++                    @Override
++                    public void onFailure(Call<Manga> call, Throwable t) {
++                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
++                        Loading.setVisibility(View.GONE);
++                        Refresh.setRefreshing(false);
++                        final Handler handler = new Handler();
++                        handler.postDelayed(new Runnable() {
++                            @Override
++                            public void run() {
++                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
++                            }
++                        }, 4000);
++                    }
++                });
++    }
++
++
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/AnimeTab.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.lockinapp;\r\n\r\nimport android.os.Bundle;\r\nimport android.os.Handler;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ProgressBar;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\nimport androidx.swiperefreshlayout.widget.SwipeRefreshLayout;\r\n\r\nimport com.example.lockinapp.Data.ApiService;\r\nimport com.example.lockinapp.Data.DataRetrofit;\r\nimport com.example.lockinapp.Model.AnimItem;\r\nimport com.example.lockinapp.Model.Anime;\r\nimport com.google.android.material.snackbar.Snackbar;\r\n\r\n\r\nimport java.util.List;\r\n\r\nimport retrofit2.Call;\r\nimport retrofit2.Callback;\r\nimport retrofit2.Response;\r\n\r\npublic class AnimeTab extends Fragment {\r\n\r\n    private View view;\r\n    private RecyclerView recyclerView;\r\n    private RecyclerView.Adapter layoutAdapter;\r\n    private int page;\r\n    private ProgressBar Loading;\r\n    private SwipeRefreshLayout Refresh;\r\n\r\n    public AnimeTab(){\r\n\r\n    }\r\n\r\n    @Nullable\r\n    @Override\r\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\r\n\r\n        view = inflater.inflate(R.layout.anime_tab, container, false);\r\n        recyclerView = view.findViewById(R.id.AnimeRecycler);\r\n        recyclerView.setHasFixedSize(true);\r\n        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));\r\n        Loading = view.findViewById(R.id.Loading);\r\n        Refresh = view.findViewById(R.id.Refresh);\r\n\r\n        page = 1;\r\n        ResponseData(page);\r\n        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {\r\n            @Override\r\n            public void onRefresh() {\r\n                ResponseData(1);\r\n                Loading.setVisibility(View.GONE);\r\n            }\r\n        });\r\n\r\n        return view;\r\n    }\r\n\r\n    private void ResponseData(int page){\r\n        ApiService apiService = DataRetrofit.getData().create(ApiService.class);\r\n        Loading.setVisibility(View.VISIBLE);\r\n        recyclerView.setVisibility(View.GONE);\r\n        apiService.getAllAnime(page)\r\n                .enqueue(new Callback<Anime>() {\r\n                    @Override\r\n                    public void onResponse(Call<Anime> call, Response<Anime> response) {\r\n                        List<AnimItem> items = response.body().getTopAnime();\r\n\r\n                        Refresh.setRefreshing(false);\r\n                        Loading.setVisibility(View.GONE);\r\n                        recyclerView.setVisibility(View.VISIBLE);\r\n                        if(items != null){\r\n                            layoutAdapter = new AnimeAdapter(items);\r\n                            recyclerView.setAdapter(layoutAdapter);\r\n                        }else {\r\n                            Toast.makeText(getActivity(), \"Failed Get Dat !\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    }\r\n\r\n                    @Override\r\n                    public void onFailure(Call<Anime> call, Throwable t) {\r\n                        Toast.makeText(getActivity(), \"Low Connection\", Toast.LENGTH_SHORT).show();\r\n                        Loading.setVisibility(View.GONE);\r\n                        Refresh.setRefreshing(false);\r\n                        final Handler handler = new Handler();\r\n                        handler.postDelayed(new Runnable() {\r\n                            @Override\r\n                            public void run() {\r\n                                Snackbar.make(getView(), \"Check Connection\", Snackbar.LENGTH_LONG).show();\r\n                            }\r\n                        },4000);\r\n                    }\r\n                });\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/AnimeTab.java	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/java/com/example/lockinapp/AnimeTab.java	(date 1606803603840)
+@@ -1,41 +1,27 @@
+ package com.example.lockinapp;
+ 
+ import android.os.Bundle;
+-import android.os.Handler;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+-import android.widget.ProgressBar;
+-import android.widget.Toast;
+ 
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+-import androidx.recyclerview.widget.RecyclerView;
+-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+-
+-import com.example.lockinapp.Data.ApiService;
+-import com.example.lockinapp.Data.DataRetrofit;
+-import com.example.lockinapp.Model.AnimItem;
+-import com.example.lockinapp.Model.Anime;
+-import com.google.android.material.snackbar.Snackbar;
++import androidx.viewpager.widget.ViewPager;
+ 
+-
+-import java.util.List;
+-
+-import retrofit2.Call;
+-import retrofit2.Callback;
+-import retrofit2.Response;
++import com.example.lockinapp.Fragment.TopAiringFragment;
++import com.example.lockinapp.Fragment.TopAllAnimeFragment;
++import com.example.lockinapp.Fragment.TopMovieFragment;
++import com.example.lockinapp.Fragment.TopTvSeriesFragment;
++import com.example.lockinapp.Fragment.TopUpcomingFragment;
++import com.google.android.material.tabs.TabLayout;
+ 
+ public class AnimeTab extends Fragment {
+ 
+     private View view;
+-    private RecyclerView recyclerView;
+-    private RecyclerView.Adapter layoutAdapter;
+-    private int page;
+-    private ProgressBar Loading;
+-    private SwipeRefreshLayout Refresh;
++    private ViewPager viewPager;
++    private TabLayout tabLayout;
+ 
+     public AnimeTab(){
+ 
+@@ -46,60 +32,22 @@
+     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+ 
+         view = inflater.inflate(R.layout.anime_tab, container, false);
+-        recyclerView = view.findViewById(R.id.AnimeRecycler);
+-        recyclerView.setHasFixedSize(true);
+-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+-        Loading = view.findViewById(R.id.Loading);
+-        Refresh = view.findViewById(R.id.Refresh);
++
++        viewPager = view.findViewById(R.id.ViewPagerAnime);
++        tabLayout = view.findViewById(R.id.topAnimeTabLayout);
++        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+ 
+-        page = 1;
+-        ResponseData(page);
+-        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+-            @Override
+-            public void onRefresh() {
+-                ResponseData(1);
+-                Loading.setVisibility(View.GONE);
+-            }
+-        });
++        adapter.addFragment(new TopAllAnimeFragment(), "Top All");
++        adapter.addFragment(new TopAiringFragment(), "Top Airing");
++        adapter.addFragment(new TopUpcomingFragment(), "Top Upcoming");
++        adapter.addFragment(new TopTvSeriesFragment(), "Top TV Series");
++        adapter.addFragment(new TopMovieFragment(), "Top Movie");
++
++        viewPager.setAdapter(adapter);
++        tabLayout.setupWithViewPager(viewPager);
+ 
+         return view;
+     }
+ 
+-    private void ResponseData(int page){
+-        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
+-        Loading.setVisibility(View.VISIBLE);
+-        recyclerView.setVisibility(View.GONE);
+-        apiService.getAllAnime(page)
+-                .enqueue(new Callback<Anime>() {
+-                    @Override
+-                    public void onResponse(Call<Anime> call, Response<Anime> response) {
+-                        List<AnimItem> items = response.body().getTopAnime();
+-
+-                        Refresh.setRefreshing(false);
+-                        Loading.setVisibility(View.GONE);
+-                        recyclerView.setVisibility(View.VISIBLE);
+-                        if(items != null){
+-                            layoutAdapter = new AnimeAdapter(items);
+-                            recyclerView.setAdapter(layoutAdapter);
+-                        }else {
+-                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
+-                        }
+-                    }
+-
+-                    @Override
+-                    public void onFailure(Call<Anime> call, Throwable t) {
+-                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
+-                        Loading.setVisibility(View.GONE);
+-                        Refresh.setRefreshing(false);
+-                        final Handler handler = new Handler();
+-                        handler.postDelayed(new Runnable() {
+-                            @Override
+-                            public void run() {
+-                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
+-                            }
+-                        },4000);
+-                    }
+-                });
+-    }
+ 
+ }
+Index: app/src/main/res/layout/fragment_top_novels.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_top_novels.xml	(date 1606805046334)
++++ app/src/main/res/layout/fragment_top_novels.xml	(date 1606805046334)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".Fragment.TopNovelsFragment">
++
++    <ProgressBar
++        android:id="@+id/mangaLoading"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="center"/>
++
++    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
++        android:id="@+id/mangaRefresh"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.recyclerview.widget.RecyclerView
++            android:id="@+id/MangaRecycler"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"/>
++
++    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/Fragment/TopOneshotsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Fragment/TopOneshotsFragment.java	(date 1606805366178)
++++ app/src/main/java/com/example/lockinapp/Fragment/TopOneshotsFragment.java	(date 1606805366178)
+@@ -0,0 +1,99 @@
++package com.example.lockinapp.Fragment;
++
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
++
++import android.os.Handler;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ProgressBar;
++import android.widget.Toast;
++
++import com.example.lockinapp.Data.ApiService;
++import com.example.lockinapp.Data.DataRetrofit;
++import com.example.lockinapp.MangaAdapter;
++import com.example.lockinapp.Model.Manga;
++import com.example.lockinapp.Model.MangaItem;
++import com.example.lockinapp.R;
++import com.google.android.material.snackbar.Snackbar;
++
++import java.util.List;
++
++import retrofit2.Call;
++import retrofit2.Callback;
++import retrofit2.Response;
++
++public class TopOneshotsFragment extends Fragment {
++
++    View view;
++    private RecyclerView recyclerView;
++    private RecyclerView.Adapter layoutAdapter;
++    private ProgressBar Loading;
++    private SwipeRefreshLayout Refresh;
++
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        view = inflater.inflate(R.layout.fragment_top_oneshots, container, false);
++        recyclerView = view.findViewById(R.id.MangaRecycler);
++        recyclerView.setHasFixedSize(true);
++        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
++        Loading = view.findViewById(R.id.mangaLoading);
++        Refresh = view.findViewById(R.id.mangaRefresh);
++
++        ResponseData();
++        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
++            @Override
++            public void onRefresh() {
++                ResponseData();
++                Loading.setVisibility(View.GONE);
++            }
++        });
++
++        return view;
++    }
++
++    private void ResponseData(){
++        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
++        Loading.setVisibility(View.VISIBLE);
++        recyclerView.setVisibility(View.GONE);
++        apiService.getTopOneshots()
++                .enqueue(new Callback<Manga>() {
++                    @Override
++                    public void onResponse(Call<Manga> call, Response<Manga> response) {
++                        List<MangaItem> items = response.body().getTopMangaItems();
++
++                        Refresh.setRefreshing(false);
++                        Loading.setVisibility(View.GONE);
++                        recyclerView.setVisibility(View.VISIBLE);
++                        if (items != null){
++                            layoutAdapter = new MangaAdapter(items);
++                            recyclerView.setAdapter(layoutAdapter);
++                        }else{
++                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
++                        }
++                    }
++
++                    @Override
++                    public void onFailure(Call<Manga> call, Throwable t) {
++                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
++                        Loading.setVisibility(View.GONE);
++                        Refresh.setRefreshing(false);
++                        final Handler handler = new Handler();
++                        handler.postDelayed(new Runnable() {
++                            @Override
++                            public void run() {
++                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
++                            }
++                        }, 4000);
++                    }
++                });
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_top_oneshots.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_top_oneshots.xml	(date 1606805282327)
++++ app/src/main/res/layout/fragment_top_oneshots.xml	(date 1606805282327)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".Fragment.TopOneshotsFragment">
++
++    <ProgressBar
++        android:id="@+id/mangaLoading"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="center"/>
++
++    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
++        android:id="@+id/mangaRefresh"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.recyclerview.widget.RecyclerView
++            android:id="@+id/MangaRecycler"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"/>
++
++    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.lockinapp;\r\n\r\nimport androidx.annotation.NavigationRes;\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.ActionBarDrawerToggle;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.drawerlayout.widget.DrawerLayout;\r\nimport androidx.fragment.app.FragmentTransaction;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.MenuItem;\r\n\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\nimport com.google.android.material.navigation.NavigationView;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    private DrawerLayout drawerLayout;\r\n    private ActionBarDrawerToggle toggle;\r\n    private NavigationView navigationView;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n\r\n        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);\r\n//        navigationView = findViewById(R.id.nav_view);\r\n//\r\n        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.start, R.string.close);\r\n//\r\n        drawerLayout.addDrawerListener(toggle);\r\n        toggle.syncState();\r\n        getSupportActionBar().setDisplayHomeAsUpEnabled(true);\r\n//\r\n//        navigationView.setNavigationItemSelectedListener(this);\r\n\r\n        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);\r\n        bottomNav.setOnNavigationItemSelectedListener(navListener);\r\n        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();\r\n        bottomNav.setSelectedItemId(R.id.nav_home);\r\n    }\r\n\r\n\r\n    private BottomNavigationView.OnNavigationItemSelectedListener navListener =\r\n            new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n        @Override\r\n        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {\r\n            int id = menuItem.getItemId();\r\n\r\n            if(id == R.id.nav_home){\r\n                HomeFragment fragment = new HomeFragment();\r\n                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();\r\n                fragmentTransaction.replace(R.id.fragment_container, fragment);\r\n                fragmentTransaction.commit();\r\n            }else if(id == R.id.nav_account){\r\n                // Bagian Nadhifa\r\n\r\n            }\r\n\r\n            return true;\r\n        }\r\n    };\r\n\r\n    @Override\r\n    public boolean onOptionsItemSelected(MenuItem item) {\r\n        if(toggle.onOptionsItemSelected(item)){\r\n            return true;\r\n        }\r\n        return super.onOptionsItemSelected(item);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/MainActivity.java	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/java/com/example/lockinapp/MainActivity.java	(date 1606743824715)
+@@ -7,13 +7,15 @@
+ import androidx.drawerlayout.widget.DrawerLayout;
+ import androidx.fragment.app.FragmentTransaction;
+ 
++import android.content.Intent;
+ import android.os.Bundle;
+ import android.view.MenuItem;
++import android.widget.Toast;
+ 
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
+ import com.google.android.material.navigation.NavigationView;
+ 
+-public class MainActivity extends AppCompatActivity {
++public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+ 
+     private DrawerLayout drawerLayout;
+     private ActionBarDrawerToggle toggle;
+@@ -25,15 +27,14 @@
+         setContentView(R.layout.activity_main);
+ 
+         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+-//        navigationView = findViewById(R.id.nav_view);
+-//
++        navigationView = findViewById(R.id.nav_view);
+         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.start, R.string.close);
+-//
++
+         drawerLayout.addDrawerListener(toggle);
+         toggle.syncState();
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+-//
+-//        navigationView.setNavigationItemSelectedListener(this);
++
++        navigationView.setNavigationItemSelectedListener(this);
+ 
+         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+         bottomNav.setOnNavigationItemSelectedListener(navListener);
+@@ -69,4 +70,32 @@
+         }
+         return super.onOptionsItemSelected(item);
+     }
++
++    @Override
++    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
++
++        switch (item.getItemId()){
++            case R.id.nav_drawer_account:
++                Toast.makeText(this, "Account", Toast.LENGTH_SHORT).show();
++                break;
++
++            case R.id.nav_drawer_contact_us:
++
++                Intent intent = new Intent(this, ContactUs.class);
++                startActivity(intent);
++
++                break;
++
++            case R.id.nav_drawer_about_us:
++                Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
++                break;
++
++            case R.id.nav_drawer_logout:
++                Toast.makeText(this, "Log Out", Toast.LENGTH_SHORT).show();
++                break;
++
++        }
++
++        return true;
++    }
+ }
+Index: app/src/main/java/com/example/lockinapp/Data/ApiService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.lockinapp.Data;\r\n\r\nimport com.example.lockinapp.Model.Anime;\r\nimport com.example.lockinapp.Model.Manga;\r\n\r\nimport retrofit2.Call;\r\nimport retrofit2.http.GET;\r\nimport retrofit2.http.Path;\r\n\r\npublic interface ApiService {\r\n\r\n    // Untuk mengambil data top anime, dengan page adalah 1\r\n    @GET(\"/v3/top/anime/{page}\")\r\n    Call<Anime> getAllAnime(@Path(\"page\") int page);\r\n\r\n    // Untuk mengambil data top mange, dengan page adalah 1\r\n    @GET(\"/v3/top/manga/{manga_page}\")\r\n    Call<Manga> getAllManga(@Path(\"manga_page\") int manga_page);\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Data/ApiService.java	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/java/com/example/lockinapp/Data/ApiService.java	(date 1606804860387)
+@@ -13,8 +13,32 @@
+     @GET("/v3/top/anime/{page}")
+     Call<Anime> getAllAnime(@Path("page") int page);
+ 
++    @GET("/v3/top/anime/1/airing")
++    Call<Anime> getTopAiring();
++
++    @GET("/v3/top/anime/1/movie")
++    Call<Anime> getTopMovie();
++
++    @GET("/v3/top/anime/1/tv")
++    Call<Anime> getTopTv();
++
++    @GET("/v3/top/anime/1/upcoming")
++    Call<Anime> getTopUpcoming();
++
++
++
+     // Untuk mengambil data top mange, dengan page adalah 1
+     @GET("/v3/top/manga/{manga_page}")
+     Call<Manga> getAllManga(@Path("manga_page") int manga_page);
+ 
++    @GET("/v3/top/manga/1/novels")
++    Call<Manga> getTopNovels();
++
++    @GET("/v3/top/manga/1/oneshots")
++    Call<Manga> getTopOneshots();
++
++    @GET("/v3/top/manga/1/favorite")
++    Call<Manga> getFavorite();
++
++
+ }
+Index: app/src/main/java/com/example/lockinapp/Model/AnimItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.lockinapp.Model;\r\n\r\nimport com.google.gson.annotations.SerializedName;\r\n\r\npublic class AnimItem {\r\n\r\n    @SerializedName(\"score\")\r\n    private double score;\r\n\r\n    @SerializedName(\"end_date\")\r\n    private String end_date;\r\n\r\n    @SerializedName(\"image_url\")\r\n    private String imageUrl;\r\n\r\n    @SerializedName(\"start_date\")\r\n    private String start_date;\r\n\r\n    @SerializedName(\"members\")\r\n    private int members;\r\n\r\n    @SerializedName(\"rank\")\r\n    private int rank;\r\n\r\n    @SerializedName(\"mal_id\")\r\n    private int malId;\r\n\r\n    @SerializedName(\"title\")\r\n    private String title;\r\n\r\n    @SerializedName(\"type\")\r\n    private String type;\r\n\r\n    @SerializedName(\"url\")\r\n    private String url;\r\n\r\n    @SerializedName(\"episodes\")\r\n    private int episodes;\r\n\r\n    public double getScore() {\r\n        return score;\r\n    }\r\n\r\n    public String getEnd_date() {\r\n        return end_date;\r\n    }\r\n\r\n    public String getImageUrl() {\r\n        return imageUrl;\r\n    }\r\n\r\n    public String getStart_date() {\r\n        return start_date;\r\n    }\r\n\r\n    public int getMembers() {\r\n        return members;\r\n    }\r\n\r\n    public int getRank() {\r\n        return rank;\r\n    }\r\n\r\n    public int getMalId() {\r\n        return malId;\r\n    }\r\n\r\n    public String getTitle() {\r\n        return title;\r\n    }\r\n\r\n    public void setTitle(String title) {\r\n        this.title = title;\r\n    }\r\n\r\n    public String getType() {\r\n        return type;\r\n    }\r\n\r\n    public void setType(String type) {\r\n        this.type = type;\r\n    }\r\n\r\n    public String getUrl() {\r\n        return url;\r\n    }\r\n\r\n    public int getEpisodes() {\r\n        return episodes;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Model/AnimItem.java	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/java/com/example/lockinapp/Model/AnimItem.java	(date 1606818267325)
+@@ -4,6 +4,24 @@
+ 
+ public class AnimItem {
+ 
++
++    public AnimItem() {
++    }
++
++    public AnimItem(double score, String end_date, String imageUrl, String start_date, int members, int rank, int malId, String title, String type, String url, int episodes) {
++        this.score = score;
++        this.end_date = end_date;
++        this.imageUrl = imageUrl;
++        this.start_date = start_date;
++        this.members = members;
++        this.rank = rank;
++        this.malId = malId;
++        this.title = title;
++        this.type = type;
++        this.url = url;
++        this.episodes = episodes;
++    }
++
+     @SerializedName("score")
+     private double score;
+ 
+Index: app/src/main/java/com/example/lockinapp/Model/MangaItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.lockinapp.Model;\r\n\r\nimport com.google.gson.annotations.SerializedName;\r\n\r\npublic class MangaItem {\r\n\r\n    @SerializedName(\"score\")\r\n    private double manga_score;\r\n\r\n    @SerializedName(\"end_date\")\r\n    private String manga_end_date;\r\n\r\n    @SerializedName(\"image_url\")\r\n    private String manga_image_url;\r\n\r\n    @SerializedName(\"start_date\")\r\n    private String manga_start_date;\r\n\r\n    @SerializedName(\"members\")\r\n    private int manga_members;\r\n\r\n    @SerializedName(\"rank\")\r\n    private int manga_rank;\r\n\r\n    @SerializedName(\"mal_id\")\r\n    private int manga_malId;\r\n\r\n    @SerializedName(\"title\")\r\n    private String manga_title;\r\n\r\n    @SerializedName(\"type\")\r\n    private String manga_type;\r\n\r\n    @SerializedName(\"url\")\r\n    private String manga_url;\r\n\r\n    @SerializedName(\"volumes\")\r\n    private int manga_volumes;\r\n\r\n    public double getManga_Score() {\r\n        return manga_score;\r\n    }\r\n\r\n    public String getManga_End_date() {\r\n        return manga_end_date;\r\n    }\r\n\r\n    public String getManga_image_url() {\r\n        return manga_image_url;\r\n    }\r\n\r\n    public String getManga_Start_date() {\r\n        return manga_start_date;\r\n    }\r\n\r\n    public int getManga_Members() {\r\n        return manga_members;\r\n    }\r\n\r\n    public int getManga_Rank() {\r\n        return manga_rank;\r\n    }\r\n\r\n    public int getManga_MalId() {\r\n        return manga_malId;\r\n    }\r\n\r\n    public String getManga_Title() {\r\n        return manga_title;\r\n    }\r\n\r\n    public void setManga_Title(String title) {\r\n        this.manga_title = title;\r\n    }\r\n\r\n    public String getManga_Type() {\r\n        return manga_type;\r\n    }\r\n\r\n    public void setManga_Type(String type) {\r\n        this.manga_type = type;\r\n    }\r\n\r\n    public String getManga_Url() {\r\n        return manga_url;\r\n    }\r\n\r\n    public int getManga_Volumes() {\r\n        return manga_volumes;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Model/MangaItem.java	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/java/com/example/lockinapp/Model/MangaItem.java	(date 1606808968506)
+@@ -37,6 +37,23 @@
+     @SerializedName("volumes")
+     private int manga_volumes;
+ 
++    @Override
++    public String toString() {
++        return "MangaItem{" +
++                "manga_score=" + manga_score +
++                ", manga_end_date='" + manga_end_date + '\'' +
++                ", manga_image_url='" + manga_image_url + '\'' +
++                ", manga_start_date='" + manga_start_date + '\'' +
++                ", manga_members=" + manga_members +
++                ", manga_rank=" + manga_rank +
++                ", manga_malId=" + manga_malId +
++                ", manga_title='" + manga_title + '\'' +
++                ", manga_type='" + manga_type + '\'' +
++                ", manga_url='" + manga_url + '\'' +
++                ", manga_volumes=" + manga_volumes +
++                '}';
++    }
++
+     public double getManga_Score() {
+         return manga_score;
+     }
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.2\"\r\n    defaultConfig {\r\n        applicationId \"com.example.lockinapp\"\r\n        minSdkVersion 16\r\n        targetSdkVersion 30\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: 'libs', include: ['*.jar'])\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    implementation 'com.google.android.material:material:1.1.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'\r\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\r\n    implementation 'com.google.android.material:material:1.2.1'\r\n    implementation 'com.google.android.gms:play-services-maps:17.0.0'\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test:runner:1.3.0'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\r\n    //noinspection GradleCompatible\r\n    implementation 'com.android.support:cardview-v7:28.0.0'\r\n\r\n    //Retrofit\r\n    implementation 'com.squareup.retrofit2:retrofit:2.4.0'\r\n    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'\r\n    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'\r\n\r\n    //Picaso\r\n    implementation 'com.squareup.picasso:picasso:2.71828'\r\n\r\n    //ButterKnife\r\n    implementation 'com.jakewharton:butterknife:10.0.0'\r\n    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/build.gradle	(date 1606740419018)
+@@ -34,6 +34,7 @@
+     testImplementation 'junit:junit:4.12'
+     androidTestImplementation 'androidx.test:runner:1.3.0'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
++
+     //noinspection GradleCompatible
+     implementation 'com.android.support:cardview-v7:28.0.0'
+ 
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:orientation=\"vertical\">\r\n\r\n    <!-- AppBar -->\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"140dp\"\r\n        android:background=\"#fff\"\r\n        android:elevation=\"0dp\"\r\n        android:id=\"@+id/AppBar\">\r\n\r\n        <!-- AppBar Content -->\r\n        <RelativeLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <ImageView\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"140dp\"\r\n                android:background=\"@drawable/narutoheader\"/>\r\n\r\n\r\n        </RelativeLayout>\r\n        <!-- Akhir dari AppBar Content -->\r\n\r\n    </LinearLayout>\r\n    <!-- Akhir dari AppBar -->\r\n\r\n    <com.google.android.material.tabs.TabLayout\r\n        android:id=\"@+id/TabLayout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:tabGravity=\"fill\"\r\n        app:tabMode=\"fixed\"\r\n        android:background=\"#fff\"\r\n        app:tabTextColor=\"@color/design_default_color_primary_variant\"\r\n        app:tabIndicatorColor=\"@color/colorPrimary\"/>\r\n\r\n    <androidx.viewpager.widget.ViewPager\r\n        android:id=\"@+id/ViewPager\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n\r\n    </androidx.viewpager.widget.ViewPager>\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_home.xml	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/res/layout/fragment_home.xml	(date 1606803110451)
+@@ -38,8 +38,9 @@
+         app:tabGravity="fill"
+         app:tabMode="fixed"
+         android:background="#fff"
+-        app:tabTextColor="@color/design_default_color_primary_variant"
+-        app:tabIndicatorColor="@color/colorPrimary"/>
++        app:tabTextColor="#BDBDBD"
++        app:tabIndicatorColor="@color/colorPrimary"
++        app:tabSelectedTextColor="@color/colorPrimary"/>
+ 
+     <androidx.viewpager.widget.ViewPager
+         android:id="@+id/ViewPager"
+Index: app/src/main/res/layout/manga_tab.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:orientation=\"vertical\" android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n\r\n    <ProgressBar\r\n        android:id=\"@+id/mangaLoading\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_gravity=\"center\"/>\r\n\r\n    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout\r\n        android:id=\"@+id/mangaRefresh\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n\r\n        <androidx.recyclerview.widget.RecyclerView\r\n            android:id=\"@+id/MangaRecycler\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"/>\r\n\r\n    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/manga_tab.xml	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/res/layout/manga_tab.xml	(date 1606804488824)
+@@ -1,25 +1,34 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:orientation="vertical" android:layout_width="match_parent"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:orientation="vertical"
++    android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ 
+-
+     <ProgressBar
+         android:id="@+id/mangaLoading"
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+-        android:layout_gravity="center"/>
++        android:layout_gravity="center"
++        android:visibility="gone"/>
+ 
+-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+-        android:id="@+id/mangaRefresh"
++    <com.google.android.material.tabs.TabLayout
++        android:id="@+id/topMangaTabLayout"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        app:tabGravity="fill"
++        app:tabMode="auto"
++        android:background="#fff"
++        app:tabTextColor="#BDBDBD"
++        app:tabIndicatorColor="@color/colorPrimary"
++        app:tabSelectedTextColor="@color/colorPrimary"
++        app:tabIndicatorHeight="0dp" />
++
++    <androidx.viewpager.widget.ViewPager
++        android:id="@+id/ViewPagerManga"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+ 
+-        <androidx.recyclerview.widget.RecyclerView
+-            android:id="@+id/MangaRecycler"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"/>
+-
+-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++    </androidx.viewpager.widget.ViewPager>
+ 
+ </LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/lockinapp/Fragment/TopAiringFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/lockinapp/Fragment/TopAiringFragment.java	(date 1606820075030)
++++ app/src/main/java/com/example/lockinapp/Fragment/TopAiringFragment.java	(date 1606820075030)
+@@ -0,0 +1,105 @@
++package com.example.lockinapp.Fragment;
++
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
++
++import android.os.Handler;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ProgressBar;
++import android.widget.Toast;
++
++import com.example.lockinapp.AnimeAdapter;
++import com.example.lockinapp.Data.ApiService;
++import com.example.lockinapp.Data.DataRetrofit;
++import com.example.lockinapp.Model.AnimItem;
++import com.example.lockinapp.Model.Anime;
++import com.example.lockinapp.R;
++import com.google.android.material.snackbar.Snackbar;
++
++import java.util.List;
++
++import retrofit2.Call;
++import retrofit2.Callback;
++import retrofit2.Response;
++
++public class TopAiringFragment extends Fragment {
++
++    private View view;
++    private RecyclerView recyclerView;
++    private RecyclerView.Adapter layoutAdapter;
++    private ProgressBar Loading;
++    private SwipeRefreshLayout Refresh;
++
++    public TopAiringFragment(){
++
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++
++        view = inflater.inflate(R.layout.fragment_top_airing, container, false);
++
++        recyclerView = view.findViewById(R.id.AnimeRecycler);
++
++        recyclerView.setHasFixedSize(true);
++        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
++        Loading = view.findViewById(R.id.Loading);
++        Refresh = view.findViewById(R.id.Refresh);
++
++        ResponseData();
++        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
++            @Override
++            public void onRefresh() {
++                ResponseData();
++                Loading.setVisibility(View.GONE);
++            }
++        });
++        return view;
++    }
++
++    private void ResponseData(){
++        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
++        Loading.setVisibility(View.VISIBLE);
++        recyclerView.setVisibility(View.GONE);
++        apiService.getTopAiring()
++                .enqueue(new Callback<Anime>() {
++                    @Override
++                    public void onResponse(Call<Anime> call, Response<Anime> response) {
++                        List<AnimItem> items = response.body().getTopAnime();
++
++                        Refresh.setRefreshing(false);
++                        Loading.setVisibility(View.GONE);
++                        recyclerView.setVisibility(View.VISIBLE);
++                        if(items != null){
++                            layoutAdapter = new AnimeAdapter(getContext(),items);
++                            recyclerView.setAdapter(layoutAdapter);
++                        }else {
++                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
++                        }
++
++                    }
++
++                    @Override
++                    public void onFailure(Call<Anime> call, Throwable t) {
++                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
++                        Loading.setVisibility(View.GONE);
++                        Refresh.setRefreshing(false);
++                        final Handler handler = new Handler();
++                        handler.postDelayed(new Runnable() {
++                            @Override
++                            public void run() {
++                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
++                            }
++                        },4000);
++                    }
++                });
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_top_airing.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_top_airing.xml	(date 1606800051615)
++++ app/src/main/res/layout/fragment_top_airing.xml	(date 1606800051615)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".Fragment.TopAiringFragment">
++
++    <ProgressBar
++        android:id="@+id/Loading"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="center"/>
++
++    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
++        android:id="@+id/Refresh"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.recyclerview.widget.RecyclerView
++            android:id="@+id/AnimeRecycler"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"/>
++
++    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/anime_tab.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:orientation=\"vertical\" android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n\r\n    <ProgressBar\r\n        android:id=\"@+id/Loading\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_gravity=\"center\"/>\r\n\r\n    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout\r\n        android:id=\"@+id/Refresh\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n\r\n        <androidx.recyclerview.widget.RecyclerView\r\n            android:id=\"@+id/AnimeRecycler\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"/>\r\n\r\n    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/anime_tab.xml	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/res/layout/anime_tab.xml	(date 1606802564674)
+@@ -1,25 +1,34 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:orientation="vertical" android:layout_width="match_parent"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:orientation="vertical"
++    android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ 
+-
+     <ProgressBar
+         android:id="@+id/Loading"
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+-        android:layout_gravity="center"/>
++        android:layout_gravity="center"
++        android:visibility="gone"/>
+ 
+-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+-        android:id="@+id/Refresh"
++    <com.google.android.material.tabs.TabLayout
++        android:id="@+id/topAnimeTabLayout"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        app:tabGravity="fill"
++        app:tabMode="auto"
++        android:background="#fff"
++        app:tabTextColor="#BDBDBD"
++        app:tabIndicatorColor="@color/colorPrimary"
++        app:tabSelectedTextColor="@color/colorPrimary"
++        app:tabIndicatorHeight="0dp" />
++
++    <androidx.viewpager.widget.ViewPager
++        android:id="@+id/ViewPagerAnime"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+ 
+-        <androidx.recyclerview.widget.RecyclerView
+-            android:id="@+id/AnimeRecycler"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"/>
+-
+-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
++    </androidx.viewpager.widget.ViewPager>
+ 
+ </LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">AnimaList</string>\r\n\r\n    <string name=\"start\">Start</string>\r\n    <string name=\"close\">Close</string>\r\n\r\n</resources>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision d2fabedbfdc78be60fea51c8c6872a8fad426ae0)
++++ app/src/main/res/values/strings.xml	(date 1606782398250)
+@@ -3,5 +3,7 @@
+ 
+     <string name="start">Start</string>
+     <string name="close">Close</string>
++    <!-- TODO: Remove or change this placeholder text -->
++    <string name="hello_blank_fragment">Hello blank fragment</string>
+ 
+ </resources>
