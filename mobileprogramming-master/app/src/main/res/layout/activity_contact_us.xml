@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactUs">
+
+    <TextView
+        android:id="@+id/ContactUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Us"
+        android:textSize="30sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:id="@+id/EmailDet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email : \nLockInOfficialMail@lockmail.com"
+        android:textSize="10pt"
+        android:lineSpacingMultiplier="1.3"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ContactUs"
+        android:layout_marginStart="30dp"
+        android:textColor="#023ebf"
+        />
+
+    <TextView
+        android:id="@+id/TelephoneDet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telephone : \n021-xxx-xxx"
+        android:textSize="10pt"
+        android:lineSpacingMultiplier="1.3"
+        android:layout_marginTop="125dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ContactUs"
+        android:layout_marginStart="30dp"
+        android:textColor="#023ebf"
+        />
+
+    <TextView
+        android:id="@+id/SocialMedia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Social Media: \n Facebook\n Instagram\n Twitter"
+        android:textSize="10pt"
+        android:lineSpacingMultiplier="1.3"
+        android:layout_marginTop="225dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ContactUs"
+        android:layout_marginStart="30dp"
+        android:textColor="#023ebf"
+        />
+    <TextView
+        android:id="@+id/OfficeMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Office:"
+        android:textSize="10pt"
+        android:lineSpacingMultiplier="1.3"
+        android:layout_marginTop="395dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ContactUs"
+        android:layout_marginStart="30dp"
+        android:textColor="#023ebf"
+        />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="232dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OfficeMap" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
