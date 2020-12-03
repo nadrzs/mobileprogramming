@@ -7,13 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -25,15 +27,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-//        navigationView = findViewById(R.id.nav_view);
-//
+        navigationView = findViewById(R.id.nav_view);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.start, R.string.close);
-//
+
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//        navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.setNavigationItemSelectedListener(this);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -68,5 +69,33 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.nav_drawer_account:
+                Toast.makeText(this, "Account", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.nav_drawer_contact_us:
+
+                Intent intent = new Intent(this, ContactUs.class);
+                startActivity(intent);
+
+                break;
+
+            case R.id.nav_drawer_about_us:
+                Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.nav_drawer_logout:
+                Toast.makeText(this, "Log Out", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+
+        return true;
     }
 }

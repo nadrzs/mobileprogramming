@@ -37,6 +37,23 @@ public class MangaItem {
     @SerializedName("volumes")
     private int manga_volumes;
 
+    @Override
+    public String toString() {
+        return "MangaItem{" +
+                "manga_score=" + manga_score +
+                ", manga_end_date='" + manga_end_date + '\'' +
+                ", manga_image_url='" + manga_image_url + '\'' +
+                ", manga_start_date='" + manga_start_date + '\'' +
+                ", manga_members=" + manga_members +
+                ", manga_rank=" + manga_rank +
+                ", manga_malId=" + manga_malId +
+                ", manga_title='" + manga_title + '\'' +
+                ", manga_type='" + manga_type + '\'' +
+                ", manga_url='" + manga_url + '\'' +
+                ", manga_volumes=" + manga_volumes +
+                '}';
+    }
+
     public double getManga_Score() {
         return manga_score;
     }

@@ -1,5 +1,6 @@
 package com.example.lockinapp;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lockinapp.Data.DataBaseHelper;
 import com.example.lockinapp.Model.AnimItem;
 import com.squareup.picasso.Picasso;
 
@@ -22,8 +24,10 @@ import butterknife.ButterKnife;
 public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder> {
 
     List<AnimItem> animeList;
+    Context context;
 
-    public AnimeAdapter(List<AnimItem> animItems) {
+    public AnimeAdapter(Context context, List<AnimItem> animItems) {
+        this.context = context;
         this.animeList = animItems;
     }
 
@@ -39,6 +43,7 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         final AnimItem item = animeList.get(position);
+        AnimItem animItem;
 
         DecimalFormat members = (DecimalFormat) DecimalFormat.getNumberInstance();
         DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols();
@@ -52,6 +57,9 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder
         holder.animeStartEnd.setText(String.format("%s - %s", item.getStart_date(), item.getEnd_date()));
         holder.animeMembers.setText(String.format("%s Members", members.format(item.getMembers())));
         holder.animeRating.setText(String.valueOf(item.getScore()));
+
+//        DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
+//        dataBaseHelper.addOne();
 
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override
