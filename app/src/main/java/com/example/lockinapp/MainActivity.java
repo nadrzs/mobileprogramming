@@ -90,6 +90,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
                 break;
 
+            case R.id.nav_drawer_setting:
+                Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
+                //Koding disini rak
+                break;
+
             case R.id.nav_drawer_logout:
                 Toast.makeText(this, "Log Out", Toast.LENGTH_SHORT).show();
                 break;

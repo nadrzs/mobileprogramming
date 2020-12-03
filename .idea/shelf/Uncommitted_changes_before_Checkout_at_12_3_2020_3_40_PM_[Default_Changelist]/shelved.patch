@@ -1,0 +1,2489 @@
+Index: mobileprogramming-master/app/src/test/java/com/example/lockinapp/ExampleUnitTest.java
+===================================================================
+--- mobileprogramming-master/app/src/test/java/com/example/lockinapp/ExampleUnitTest.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/test/java/com/example/lockinapp/ExampleUnitTest.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,17 +0,0 @@
+-package com.example.lockinapp;
+-
+-import org.junit.Test;
+-
+-import static org.junit.Assert.*;
+-
+-/**
+- * Example local unit test, which will execute on the development machine (host).
+- *
+- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+- */
+-public class ExampleUnitTest {
+-    @Test
+-    public void addition_isCorrect() {
+-        assertEquals(4, 2 + 2);
+-    }
+-}
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/layout/activity_my_account.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/activity_my_account.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/activity_my_account.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,87 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".MyAccount">
+-
+-    <FrameLayout
+-        android:id="@+id/frameLayout"
+-        android:layout_width="150dp"
+-        android:layout_height="150dp"
+-        android:layout_marginTop="100dp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent">
+-
+-        <ImageView
+-            android:id="@+id/ProfilePic"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"
+-            tools:srcCompat="@tools:sample/avatars" />
+-    </FrameLayout>
+-
+-    <TextView
+-        android:id="@+id/MyAccount"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="My Account"
+-        android:textSize="30sp"
+-        android:layout_marginTop="20dp"
+-        android:layout_marginLeft="20dp"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        android:layout_marginStart="20dp" />
+-
+-    <com.google.android.material.textfield.TextInputLayout
+-        android:layout_width="300dp"
+-        android:layout_height="wrap_content"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+-        android:layout_marginTop="50dp"
+-        >
+-
+-        <com.google.android.material.textfield.TextInputEditText
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:hint="Username"
+-            android:padding="15dp"
+-            />
+-    </com.google.android.material.textfield.TextInputLayout>
+-    <com.google.android.material.textfield.TextInputLayout
+-        android:layout_width="300dp"
+-        android:layout_height="wrap_content"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+-        android:layout_marginTop="150dp"
+-        >
+-
+-        <com.google.android.material.textfield.TextInputEditText
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:hint="Email"
+-            android:padding="15dp"
+-            />
+-    </com.google.android.material.textfield.TextInputLayout>
+-
+-    <com.google.android.material.textfield.TextInputLayout
+-        android:layout_width="300dp"
+-        android:layout_height="wrap_content"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+-        android:layout_marginTop="250dp"
+-        >
+-
+-        <com.google.android.material.textfield.TextInputEditText
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:hint="Password"
+-            android:padding="15dp"
+-            />
+-    </com.google.android.material.textfield.TextInputLayout>
+-
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/layout/anime_tab.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/anime_tab.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/anime_tab.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,25 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:orientation="vertical" android:layout_width="match_parent"
+-    android:layout_height="match_parent">
+-
+-
+-    <ProgressBar
+-        android:id="@+id/Loading"
+-        android:layout_width="wrap_content"
+-        android:layout_height="match_parent"
+-        android:layout_gravity="center"/>
+-
+-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+-        android:id="@+id/Refresh"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent">
+-
+-        <androidx.recyclerview.widget.RecyclerView
+-            android:id="@+id/AnimeRecycler"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"/>
+-
+-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+-
+-</LinearLayout>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/values/colors.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/values/colors.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/values/colors.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<resources>
+-    <color name="colorPrimary">#0000AF</color>
+-    <color name="colorPrimaryDark">#0000AF</color>
+-    <color name="colorAccent">#D81B60</color>
+-</resources>
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/AnimeTab.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/AnimeTab.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/AnimeTab.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,105 +0,0 @@
+-package com.example.lockinapp;
+-
+-import android.os.Bundle;
+-import android.os.Handler;
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.ViewGroup;
+-import android.widget.ProgressBar;
+-import android.widget.Toast;
+-
+-import androidx.annotation.NonNull;
+-import androidx.annotation.Nullable;
+-import androidx.fragment.app.Fragment;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+-import androidx.recyclerview.widget.RecyclerView;
+-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+-
+-import com.example.lockinapp.Data.ApiService;
+-import com.example.lockinapp.Data.DataRetrofit;
+-import com.example.lockinapp.Model.AnimItem;
+-import com.example.lockinapp.Model.Anime;
+-import com.google.android.material.snackbar.Snackbar;
+-
+-
+-import java.util.List;
+-
+-import retrofit2.Call;
+-import retrofit2.Callback;
+-import retrofit2.Response;
+-
+-public class AnimeTab extends Fragment {
+-
+-    private View view;
+-    private RecyclerView recyclerView;
+-    private RecyclerView.Adapter layoutAdapter;
+-    private int page;
+-    private ProgressBar Loading;
+-    private SwipeRefreshLayout Refresh;
+-
+-    public AnimeTab(){
+-
+-    }
+-
+-    @Nullable
+-    @Override
+-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+-
+-        view = inflater.inflate(R.layout.anime_tab, container, false);
+-        recyclerView = view.findViewById(R.id.AnimeRecycler);
+-        recyclerView.setHasFixedSize(true);
+-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+-        Loading = view.findViewById(R.id.Loading);
+-        Refresh = view.findViewById(R.id.Refresh);
+-
+-        page = 1;
+-        ResponseData(page);
+-        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+-            @Override
+-            public void onRefresh() {
+-                ResponseData(1);
+-                Loading.setVisibility(View.GONE);
+-            }
+-        });
+-
+-        return view;
+-    }
+-
+-    private void ResponseData(int page){
+-        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
+-        Loading.setVisibility(View.VISIBLE);
+-        recyclerView.setVisibility(View.GONE);
+-        apiService.getAllAnime(page)
+-                .enqueue(new Callback<Anime>() {
+-                    @Override
+-                    public void onResponse(Call<Anime> call, Response<Anime> response) {
+-                        List<AnimItem> items = response.body().getTopAnime();
+-
+-                        Refresh.setRefreshing(false);
+-                        Loading.setVisibility(View.GONE);
+-                        recyclerView.setVisibility(View.VISIBLE);
+-                        if(items != null){
+-                            layoutAdapter = new AnimeAdapter(items);
+-                            recyclerView.setAdapter(layoutAdapter);
+-                        }else {
+-                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
+-                        }
+-                    }
+-
+-                    @Override
+-                    public void onFailure(Call<Anime> call, Throwable t) {
+-                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
+-                        Loading.setVisibility(View.GONE);
+-                        Refresh.setRefreshing(false);
+-                        final Handler handler = new Handler();
+-                        handler.postDelayed(new Runnable() {
+-                            @Override
+-                            public void run() {
+-                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
+-                            }
+-                        },4000);
+-                    }
+-                });
+-    }
+-
+-}
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/MangaItem.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/MangaItem.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/MangaItem.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,91 +0,0 @@
+-package com.example.lockinapp.Model;
+-
+-import com.google.gson.annotations.SerializedName;
+-
+-public class MangaItem {
+-
+-    @SerializedName("score")
+-    private double manga_score;
+-
+-    @SerializedName("end_date")
+-    private String manga_end_date;
+-
+-    @SerializedName("image_url")
+-    private String manga_image_url;
+-
+-    @SerializedName("start_date")
+-    private String manga_start_date;
+-
+-    @SerializedName("members")
+-    private int manga_members;
+-
+-    @SerializedName("rank")
+-    private int manga_rank;
+-
+-    @SerializedName("mal_id")
+-    private int manga_malId;
+-
+-    @SerializedName("title")
+-    private String manga_title;
+-
+-    @SerializedName("type")
+-    private String manga_type;
+-
+-    @SerializedName("url")
+-    private String manga_url;
+-
+-    @SerializedName("volumes")
+-    private int manga_volumes;
+-
+-    public double getManga_Score() {
+-        return manga_score;
+-    }
+-
+-    public String getManga_End_date() {
+-        return manga_end_date;
+-    }
+-
+-    public String getManga_image_url() {
+-        return manga_image_url;
+-    }
+-
+-    public String getManga_Start_date() {
+-        return manga_start_date;
+-    }
+-
+-    public int getManga_Members() {
+-        return manga_members;
+-    }
+-
+-    public int getManga_Rank() {
+-        return manga_rank;
+-    }
+-
+-    public int getManga_MalId() {
+-        return manga_malId;
+-    }
+-
+-    public String getManga_Title() {
+-        return manga_title;
+-    }
+-
+-    public void setManga_Title(String title) {
+-        this.manga_title = title;
+-    }
+-
+-    public String getManga_Type() {
+-        return manga_type;
+-    }
+-
+-    public void setManga_Type(String type) {
+-        this.manga_type = type;
+-    }
+-
+-    public String getManga_Url() {
+-        return manga_url;
+-    }
+-
+-    public int getManga_Volumes() {
+-        return manga_volumes;
+-    }
+-}
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_account_circle_black_24dp.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_account_circle_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_account_circle_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<vector android:height="24dp" android:tint="#FFFFFF"
+-    android:viewportHeight="24.0" android:viewportWidth="24.0"
+-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+-    <path android:fillColor="#FF000000" android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2zM12,5c1.66,0 3,1.34 3,3s-1.34,3 -3,3 -3,-1.34 -3,-3 1.34,-3 3,-3zM12,19.2c-2.5,0 -4.71,-1.28 -6,-3.22 0.03,-1.99 4,-3.08 6,-3.08 1.99,0 5.97,1.09 6,3.08 -1.29,1.94 -3.5,3.22 -6,3.22z"/>
+-</vector>
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_exit.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_exit.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_exit.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<vector android:height="24dp" android:tint="#FFFFFF"
+-    android:viewportHeight="24.0" android:viewportWidth="24.0"
+-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+-    <path android:fillColor="#FF000000" android:pathData="M10.09,15.59L11.5,17l5,-5 -5,-5 -1.41,1.41L12.67,11H3v2h9.67l-2.58,2.59zM19,3H5c-1.11,0 -2,0.9 -2,2v4h2V5h14v14H5v-4H3v4c0,1.1 0.89,2 2,2h14c1.1,0 2,-0.9 2,-2V5c0,-1.1 -0.9,-2 -2,-2z"/>
+-</vector>
+Index: mobileprogramming-master/app/src/main/res/layout/activity_main.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/activity_main.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/activity_main.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,58 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-
+-<androidx.drawerlayout.widget.DrawerLayout android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:id="@+id/drawerLayout">
+-
+-
+-    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:orientation="vertical"
+-        tools:context=".MainActivity">
+-
+-
+-
+-        <FrameLayout
+-            android:id="@+id/fragment_container"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"
+-            android:layout_above="@+id/bottom_navigation"/>
+-
+-
+-        <!-- Bottom Navigation -->
+-        <com.google.android.material.bottomnavigation.BottomNavigationView
+-            android:id="@+id/bottom_navigation"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_alignParentBottom="true"
+-            android:background="#0000AF"
+-            android:elevation="50dp"
+-            app:elevation="50dp"
+-            app:itemIconSize="30dp"
+-            app:menu="@menu/bottom_navigation"
+-            app:itemIconTint="#fff"
+-            app:itemTextColor="#fff"/>
+-        <!-- Akhir Bottom Navigation -->
+-
+-    </RelativeLayout>
+-
+-    <com.google.android.material.navigation.NavigationView
+-        app:headerLayout="@layout/header"
+-        android:id="@+id/nav_view"
+-        android:layout_width="wrap_content"
+-        android:layout_height="match_parent"
+-        android:background="#565656"
+-        app:itemTextColor="#fff"
+-        app:itemIconTint="#fff"
+-        app:menu="@menu/nav_drawer"
+-        android:fitsSystemWindows="true"
+-        app:itemTextAppearance="?android:attr/textAppearanceMedium"
+-        android:layout_gravity="start"/>
+-
+-</androidx.drawerlayout.widget.DrawerLayout>
+-
+-
+-
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_lock_outline_black_24dp.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_lock_outline_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_lock_outline_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,9 +0,0 @@
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-        android:width="24dp"
+-        android:height="24dp"
+-        android:viewportWidth="24.0"
+-        android:viewportHeight="24.0">
+-    <path
+-        android:fillColor="#FF000000"
+-        android:pathData="M12,17c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,8h-1L17,6c0,-2.76 -2.24,-5 -5,-5S7,3.24 7,6v2L6,8c-1.1,0 -2,0.9 -2,2v10c0,1.1 0.9,2 2,2h12c1.1,0 2,-0.9 2,-2L20,10c0,-1.1 -0.9,-2 -2,-2zM8.9,6c0,-1.71 1.39,-3.1 3.1,-3.1s3.1,1.39 3.1,3.1v2L8.9,8L8.9,6zM18,20L6,20L6,10h12v10z"/>
+-</vector>
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/AccountFragment.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/AccountFragment.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/AccountFragment.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,64 +0,0 @@
+-package com.example.lockinapp;
+-
+-import android.os.Bundle;
+-
+-import androidx.fragment.app.Fragment;
+-
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.ViewGroup;
+-
+-/**
+- * A simple {@link Fragment} subclass.
+- * Use the {@link AccountFragment#newInstance} factory method to
+- * create an instance of this fragment.
+- */
+-public class AccountFragment extends Fragment {
+-
+-    // TODO: Rename parameter arguments, choose names that match
+-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+-    private static final String ARG_PARAM1 = "param1";
+-    private static final String ARG_PARAM2 = "param2";
+-
+-    // TODO: Rename and change types of parameters
+-    private String mParam1;
+-    private String mParam2;
+-
+-    public AccountFragment() {
+-        // Required empty public constructor
+-    }
+-
+-    /**
+-     * Use this factory method to create a new instance of
+-     * this fragment using the provided parameters.
+-     *
+-     * @param param1 Parameter 1.
+-     * @param param2 Parameter 2.
+-     * @return A new instance of fragment AccountFragment.
+-     */
+-    // TODO: Rename and change types and number of parameters
+-    public static AccountFragment newInstance(String param1, String param2) {
+-        AccountFragment fragment = new AccountFragment();
+-        Bundle args = new Bundle();
+-        args.putString(ARG_PARAM1, param1);
+-        args.putString(ARG_PARAM2, param2);
+-        fragment.setArguments(args);
+-        return fragment;
+-    }
+-
+-    @Override
+-    public void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        if (getArguments() != null) {
+-            mParam1 = getArguments().getString(ARG_PARAM1);
+-            mParam2 = getArguments().getString(ARG_PARAM2);
+-        }
+-    }
+-
+-    @Override
+-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+-                             Bundle savedInstanceState) {
+-        // Inflate the layout for this fragment
+-        return inflater.inflate(R.layout.fragment_account, container, false);
+-    }
+-}
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/drawable/circle.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/circle.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/circle.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,9 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<shape xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:shape="oval">
+-
+-    <solid android:color="@color/colorPrimary"/>
+-    <size android:width="400dp" android:height="400dp"/>
+-
+-
+-</shape>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/Anime.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/Anime.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/Anime.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,21 +0,0 @@
+-package com.example.lockinapp.Model;
+-
+-import com.google.gson.annotations.SerializedName;
+-
+-import java.util.List;
+-
+-public class Anime {
+-
+-    @SerializedName("top")
+-    private List<AnimItem> top;
+-
+-    public List<AnimItem> getTopAnime(){
+-        return top;
+-    }
+-
+-    public void setTop(List<AnimItem> top){
+-        this.top = top;
+-    }
+-
+-
+-}
+Index: mobileprogramming-master/build.gradle
+===================================================================
+--- mobileprogramming-master/build.gradle	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/build.gradle	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,27 +0,0 @@
+-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+-
+-buildscript {
+-    repositories {
+-        google()
+-        jcenter()
+-        
+-    }
+-    dependencies {
+-        classpath 'com.android.tools.build:gradle:4.1.0'
+-        
+-        // NOTE: Do not place your application dependencies here; they belong
+-        // in the individual module build.gradle files
+-    }
+-}
+-
+-allprojects {
+-    repositories {
+-        google()
+-        jcenter()
+-        
+-    }
+-}
+-
+-task clean(type: Delete) {
+-    delete rootProject.buildDir
+-}
+Index: mobileprogramming-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@drawable/ic_launcher_background" />
+-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+-</adaptive-icon>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@drawable/ic_launcher_background" />
+-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+-</adaptive-icon>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/AnimItem.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/AnimItem.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/AnimItem.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,91 +0,0 @@
+-package com.example.lockinapp.Model;
+-
+-import com.google.gson.annotations.SerializedName;
+-
+-public class AnimItem {
+-
+-    @SerializedName("score")
+-    private double score;
+-
+-    @SerializedName("end_date")
+-    private String end_date;
+-
+-    @SerializedName("image_url")
+-    private String imageUrl;
+-
+-    @SerializedName("start_date")
+-    private String start_date;
+-
+-    @SerializedName("members")
+-    private int members;
+-
+-    @SerializedName("rank")
+-    private int rank;
+-
+-    @SerializedName("mal_id")
+-    private int malId;
+-
+-    @SerializedName("title")
+-    private String title;
+-
+-    @SerializedName("type")
+-    private String type;
+-
+-    @SerializedName("url")
+-    private String url;
+-
+-    @SerializedName("episodes")
+-    private int episodes;
+-
+-    public double getScore() {
+-        return score;
+-    }
+-
+-    public String getEnd_date() {
+-        return end_date;
+-    }
+-
+-    public String getImageUrl() {
+-        return imageUrl;
+-    }
+-
+-    public String getStart_date() {
+-        return start_date;
+-    }
+-
+-    public int getMembers() {
+-        return members;
+-    }
+-
+-    public int getRank() {
+-        return rank;
+-    }
+-
+-    public int getMalId() {
+-        return malId;
+-    }
+-
+-    public String getTitle() {
+-        return title;
+-    }
+-
+-    public void setTitle(String title) {
+-        this.title = title;
+-    }
+-
+-    public String getType() {
+-        return type;
+-    }
+-
+-    public void setType(String type) {
+-        this.type = type;
+-    }
+-
+-    public String getUrl() {
+-        return url;
+-    }
+-
+-    public int getEpisodes() {
+-        return episodes;
+-    }
+-}
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/Manga.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/Manga.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/Model/Manga.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,19 +0,0 @@
+-package com.example.lockinapp.Model;
+-
+-import com.google.gson.annotations.SerializedName;
+-
+-import java.util.List;
+-
+-public class Manga {
+-
+-    @SerializedName("top")
+-    private List<MangaItem> mangaItems;
+-
+-    public List<MangaItem> getTopMangaItems() {
+-        return mangaItems;
+-    }
+-
+-    public void setMangaItems(List<MangaItem> mangaItems) {
+-        this.mangaItems = mangaItems;
+-    }
+-}
+Index: mobileprogramming-master/app/proguard-rules.pro
+===================================================================
+--- mobileprogramming-master/app/proguard-rules.pro	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/proguard-rules.pro	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,21 +0,0 @@
+-# Add project specific ProGuard rules here.
+-# You can control the set of applied configuration files using the
+-# proguardFiles setting in build.gradle.
+-#
+-# For more details, see
+-#   http://developer.android.com/guide/developing/tools/proguard.html
+-
+-# If your project uses WebView with JS, uncomment the following
+-# and specify the fully qualified class name to the JavaScript interface
+-# class:
+-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+-#   public *;
+-#}
+-
+-# Uncomment this to preserve the line number information for
+-# debugging stack traces.
+-#-keepattributes SourceFile,LineNumberTable
+-
+-# If you keep the line number information, uncomment this to
+-# hide the original source file name.
+-#-renamesourcefileattribute SourceFile
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/MainActivity.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/MainActivity.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/MainActivity.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,75 +0,0 @@
+-package com.example.lockinapp;
+-
+-import androidx.annotation.NavigationRes;
+-import androidx.annotation.NonNull;
+-import androidx.appcompat.app.ActionBarDrawerToggle;
+-import androidx.appcompat.app.AppCompatActivity;
+-import androidx.drawerlayout.widget.DrawerLayout;
+-import androidx.fragment.app.FragmentTransaction;
+-
+-import android.os.Bundle;
+-import android.view.MenuItem;
+-
+-import com.google.android.material.bottomnavigation.BottomNavigationView;
+-import com.google.android.material.navigation.NavigationView;
+-
+-public class MainActivity extends AppCompatActivity {
+-
+-    private DrawerLayout drawerLayout;
+-    private ActionBarDrawerToggle toggle;
+-    private NavigationView navigationView;
+-
+-    @Override
+-    protected void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_main);
+-
+-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+-//        navigationView = findViewById(R.id.nav_view);
+-//
+-        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.start, R.string.close);
+-//
+-        drawerLayout.addDrawerListener(toggle);
+-        toggle.syncState();
+-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+-//
+-//        navigationView.setNavigationItemSelectedListener(this);
+-
+-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+-        bottomNav.setOnNavigationItemSelectedListener(navListener);
+-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+-        bottomNav.setSelectedItemId(R.id.nav_home);
+-    }
+-
+-
+-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+-            new BottomNavigationView.OnNavigationItemSelectedListener() {
+-        @Override
+-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+-            int id = menuItem.getItemId();
+-
+-            if(id == R.id.nav_home){
+-                HomeFragment fragment = new HomeFragment();
+-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+-                fragmentTransaction.replace(R.id.fragment_container, fragment);
+-                fragmentTransaction.commit();
+-            }
+-            else if(id == R.id.nav_account){
+-                AccountFragment fragment = new AccountFragment();
+-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+-                fragmentTransaction.replace(R.id.fragment_container, fragment);
+-                fragmentTransaction.commit();
+-            }
+-
+-            return true;
+-        }
+-    };
+-
+-    @Override
+-    public boolean onOptionsItemSelected(MenuItem item) {
+-        if(toggle.onOptionsItemSelected(item)){
+-            return true;
+-        }
+-        return super.onOptionsItemSelected(item);
+-    }
+-}
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_person.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_person.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_person.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<vector android:height="24dp" android:tint="#FFFFFF"
+-    android:viewportHeight="24.0" android:viewportWidth="24.0"
+-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+-    <path android:fillColor="#FF000000" android:pathData="M12,12c2.21,0 4,-1.79 4,-4s-1.79,-4 -4,-4 -4,1.79 -4,4 1.79,4 4,4zM12,14c-2.67,0 -8,1.34 -8,4v2h16v-2c0,-2.66 -5.33,-4 -8,-4z"/>
+-</vector>
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_settings_black_24dp.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_settings_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_settings_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<vector android:height="24dp" android:tint="#FFFFFF"
+-    android:viewportHeight="24" android:viewportWidth="24"
+-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+-    <path android:fillColor="#FF000000" android:pathData="M19.1,12.9a2.8,2.8 0,0 0,0.1 -0.9,2.8 2.8,0 0,0 -0.1,-0.9l2.1,-1.6a0.7,0.7 0,0 0,0.1 -0.6L19.4,5.5a0.7,0.7 0,0 0,-0.6 -0.2l-2.4,1a6.5,6.5 0,0 0,-1.6 -0.9l-0.4,-2.6a0.5,0.5 0,0 0,-0.5 -0.4H10.1a0.5,0.5 0,0 0,-0.5 0.4L9.3,5.4a5.6,5.6 0,0 0,-1.7 0.9l-2.4,-1a0.4,0.4 0,0 0,-0.5 0.2l-2,3.4c-0.1,0.2 0,0.4 0.2,0.6l2,1.6a2.8,2.8 0,0 0,-0.1 0.9,2.8 2.8,0 0,0 0.1,0.9L2.8,14.5a0.7,0.7 0,0 0,-0.1 0.6l1.9,3.4a0.7,0.7 0,0 0,0.6 0.2l2.4,-1a6.5,6.5 0,0 0,1.6 0.9l0.4,2.6a0.5,0.5 0,0 0,0.5 0.4h3.8a0.5,0.5 0,0 0,0.5 -0.4l0.3,-2.6a5.6,5.6 0,0 0,1.7 -0.9l2.4,1a0.4,0.4 0,0 0,0.5 -0.2l2,-3.4c0.1,-0.2 0,-0.4 -0.2,-0.6ZM12,15.6A3.6,3.6 0,1 1,15.6 12,3.6 3.6,0 0,1 12,15.6Z"/>
+-</vector>
+Index: mobileprogramming-master/app/src/main/res/menu/nav_drawer.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/menu/nav_drawer.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/menu/nav_drawer.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,28 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+-
+-    <item
+-        android:id="@+id/nav_drawer_account"
+-        android:icon="@drawable/ic_person"
+-        android:title="My Account"
+-        />
+-
+-    <item
+-        android:id="@+id/nav_drawer_contact_us"
+-        android:icon="@drawable/ic_drafts_black_24dp"
+-        android:title="Contact Us"
+-        />
+-
+-    <item
+-        android:id="@+id/nav_drawer_about_us"
+-        android:icon="@drawable/question"
+-        android:title="About Us"
+-        />
+-
+-    <item
+-        android:id="@+id/nav_drawer_logout"
+-        android:icon="@drawable/ic_exit"
+-        android:title="Log Out"
+-        />
+-
+-</menu>
+\ No newline at end of file
+Index: mobileprogramming-master/gradle/wrapper/gradle-wrapper.properties
+===================================================================
+--- mobileprogramming-master/gradle/wrapper/gradle-wrapper.properties	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/gradle/wrapper/gradle-wrapper.properties	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,6 +0,0 @@
+-#Sat Nov 28 19:35:22 ICT 2020
+-distributionBase=GRADLE_USER_HOME
+-distributionPath=wrapper/dists
+-zipStoreBase=GRADLE_USER_HOME
+-zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-bin.zip
+Index: mobileprogramming-master/app/build.gradle
+===================================================================
+--- mobileprogramming-master/app/build.gradle	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/build.gradle	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,52 +0,0 @@
+-apply plugin: 'com.android.application'
+-
+-android {
+-    compileSdkVersion 30
+-    buildToolsVersion "30.0.2"
+-    defaultConfig {
+-        applicationId "com.example.lockinapp"
+-        minSdkVersion 16
+-        targetSdkVersion 30
+-        versionCode 1
+-        versionName "1.0"
+-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+-    }
+-    buildTypes {
+-        release {
+-            minifyEnabled false
+-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+-        }
+-    }
+-    compileOptions {
+-        sourceCompatibility JavaVersion.VERSION_1_8
+-        targetCompatibility JavaVersion.VERSION_1_8
+-    }
+-}
+-
+-dependencies {
+-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+-    implementation 'androidx.appcompat:appcompat:1.2.0'
+-    implementation 'com.google.android.material:material:1.1.0'
+-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+-    implementation 'com.google.android.material:material:1.2.1'
+-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+-    testImplementation 'junit:junit:4.12'
+-    androidTestImplementation 'androidx.test:runner:1.3.0'
+-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+-    //noinspection GradleCompatible
+-    implementation 'com.android.support:cardview-v7:28.0.0'
+-
+-    //Retrofit
+-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+-
+-    //Picaso
+-    implementation 'com.squareup.picasso:picasso:2.71828'
+-
+-    //ButterKnife
+-    implementation 'com.jakewharton:butterknife:10.0.0'
+-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+-
+-}
+Index: mobileprogramming-master/app/src/main/res/layout/activity_contact_us.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/activity_contact_us.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/activity_contact_us.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,89 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".ContactUs">
+-
+-    <TextView
+-        android:id="@+id/ContactUs"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Contact Us"
+-        android:textSize="30sp"
+-        android:layout_marginTop="20dp"
+-        android:layout_marginLeft="20dp"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        android:layout_marginStart="20dp" />
+-
+-    <TextView
+-        android:id="@+id/EmailDet"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Email : \nLockInOfficialMail@lockmail.com"
+-        android:textSize="10pt"
+-        android:lineSpacingMultiplier="1.3"
+-        android:layout_marginTop="30dp"
+-        android:layout_marginLeft="30dp"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/ContactUs"
+-        android:layout_marginStart="30dp"
+-        android:textColor="#023ebf"
+-        />
+-
+-    <TextView
+-        android:id="@+id/TelephoneDet"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Telephone : \n021-xxx-xxx"
+-        android:textSize="10pt"
+-        android:lineSpacingMultiplier="1.3"
+-        android:layout_marginTop="125dp"
+-        android:layout_marginLeft="30dp"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/ContactUs"
+-        android:layout_marginStart="30dp"
+-        android:textColor="#023ebf"
+-        />
+-
+-    <TextView
+-        android:id="@+id/SocialMedia"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Social Media: \n Facebook\n Instagram\n Twitter"
+-        android:textSize="10pt"
+-        android:lineSpacingMultiplier="1.3"
+-        android:layout_marginTop="225dp"
+-        android:layout_marginLeft="30dp"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/ContactUs"
+-        android:layout_marginStart="30dp"
+-        android:textColor="#023ebf"
+-        />
+-    <TextView
+-        android:id="@+id/OfficeMap"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Office:"
+-        android:textSize="10pt"
+-        android:lineSpacingMultiplier="1.3"
+-        android:layout_marginTop="395dp"
+-        android:layout_marginLeft="30dp"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/ContactUs"
+-        android:layout_marginStart="30dp"
+-        android:textColor="#023ebf"
+-        />
+-
+-    <com.google.android.gms.maps.MapView
+-        android:id="@+id/mapView"
+-        android:layout_width="232dp"
+-        android:layout_height="146dp"
+-        android:layout_marginTop="15dp"
+-        android:layout_marginLeft="30dp"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/OfficeMap" />
+-
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_drafts_black_24dp.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_drafts_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_drafts_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<vector android:height="24dp" android:tint="#FFFFFF"
+-    android:viewportHeight="24.0" android:viewportWidth="24.0"
+-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+-    <path android:fillColor="#FF000000" android:pathData="M21.99,8c0,-0.72 -0.37,-1.35 -0.94,-1.7L12,1 2.95,6.3C2.38,6.65 2,7.28 2,8v10c0,1.1 0.9,2 2,2h16c1.1,0 2,-0.9 2,-2l-0.01,-10zM12,13L3.74,7.84 12,3l8.26,4.84L12,13z"/>
+-</vector>
+Index: mobileprogramming-master/app/src/main/res/menu/bottom_navigation.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/menu/bottom_navigation.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/menu/bottom_navigation.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,18 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+-
+-    <item
+-        android:id="@+id/nav_home"
+-        android:icon="@drawable/ic_home_black_24dp"
+-        android:title="Home"
+-        />
+-
+-    <item
+-        android:id="@+id/nav_account"
+-        android:icon="@drawable/ic_account_circle_black_24dp"
+-        android:title="Account"
+-        />
+-
+-
+-
+-</menu>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/androidTest/java/com/example/lockinapp/ExampleInstrumentedTest.java
+===================================================================
+--- mobileprogramming-master/app/src/androidTest/java/com/example/lockinapp/ExampleInstrumentedTest.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/androidTest/java/com/example/lockinapp/ExampleInstrumentedTest.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,27 +0,0 @@
+-package com.example.lockinapp;
+-
+-import android.content.Context;
+-
+-import androidx.test.InstrumentationRegistry;
+-import androidx.test.runner.AndroidJUnit4;
+-
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-
+-import static org.junit.Assert.*;
+-
+-/**
+- * Instrumented test, which will execute on an Android device.
+- *
+- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+- */
+-@RunWith(AndroidJUnit4.class)
+-public class ExampleInstrumentedTest {
+-    @Test
+-    public void useAppContext() {
+-        // Context of the app under test.
+-        Context appContext = InstrumentationRegistry.getTargetContext();
+-
+-        assertEquals("com.example.lockinapp", appContext.getPackageName());
+-    }
+-}
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/Data/ApiService.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/Data/ApiService.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/Data/ApiService.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,20 +0,0 @@
+-package com.example.lockinapp.Data;
+-
+-import com.example.lockinapp.Model.Anime;
+-import com.example.lockinapp.Model.Manga;
+-
+-import retrofit2.Call;
+-import retrofit2.http.GET;
+-import retrofit2.http.Path;
+-
+-public interface ApiService {
+-
+-    // Untuk mengambil data top anime, dengan page adalah 1
+-    @GET("/v3/top/anime/{page}")
+-    Call<Anime> getAllAnime(@Path("page") int page);
+-
+-    // Untuk mengambil data top mange, dengan page adalah 1
+-    @GET("/v3/top/manga/{manga_page}")
+-    Call<Manga> getAllManga(@Path("manga_page") int manga_page);
+-
+-}
+Index: mobileprogramming-master/app/src/main/res/layout/manga_layout.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/manga_layout.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/manga_layout.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,90 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:card_view="http://schemas.android.com/tools"
+-    android:orientation="vertical"
+-    android:layout_width="match_parent"
+-    android:layout_height="150dp"
+-    android:layout_margin="6dp"
+-    android:clickable="true"
+-    card_view:cardElevation="8dp"
+-    android:foreground="?android:attr/selectableItemBackground"
+-    android:focusable="true">
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:orientation="horizontal"
+-        android:layout_marginTop="10dp"
+-        android:layout_marginLeft="10dp"
+-        android:layout_marginBottom="10dp"
+-        android:gravity="center">
+-
+-        <ImageView
+-            android:id="@+id/manga_image"
+-            android:layout_width="80dp"
+-            android:layout_height="80dp"
+-            android:src="@drawable/ec5" />
+-
+-        <LinearLayout
+-            android:layout_width="0dp"
+-            android:layout_height="match_parent"
+-            android:layout_weight="1"
+-            android:orientation="vertical"
+-            android:gravity="center">
+-
+-            <TextView
+-                android:id="@+id/manga_title"
+-                android:text="Manga Title"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:textStyle="bold"
+-                android:textSize="18sp"/>
+-
+-            <TextView
+-                android:id="@+id/manga_volumes"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:text="Manga Volumes"/>
+-
+-            <LinearLayout
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:orientation="horizontal">
+-
+-                <TextView
+-                    android:id="@+id/manga_startEnd"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:text="Manga Start End"
+-                    android:layout_marginRight="30dp"/>
+-
+-                <ImageView
+-
+-                    android:id="@+id/manga_rating_image"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:src="@drawable/ic_star"/>
+-
+-                <TextView
+-                    android:id="@+id/manga_rating"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:text="Rating"
+-                    android:layout_gravity="center"/>
+-
+-            </LinearLayout>
+-
+-            <TextView
+-                android:id="@+id/manga_members"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:text="Manga Members"/>
+-
+-        </LinearLayout>
+-
+-
+-    </LinearLayout>
+-
+-
+-</androidx.cardview.widget.CardView>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_launcher_background.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_launcher_background.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_launcher_background.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,170 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:width="108dp"
+-    android:height="108dp"
+-    android:viewportWidth="108"
+-    android:viewportHeight="108">
+-    <path
+-        android:fillColor="#008577"
+-        android:pathData="M0,0h108v108h-108z" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M9,0L9,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,0L19,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M29,0L29,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M39,0L39,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M49,0L49,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M59,0L59,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M69,0L69,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M79,0L79,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M89,0L89,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M99,0L99,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,9L108,9"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,19L108,19"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,29L108,29"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,39L108,39"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,49L108,49"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,59L108,59"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,69L108,69"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,79L108,79"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,89L108,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,99L108,99"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,29L89,29"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,39L89,39"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,49L89,49"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,59L89,59"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,69L89,69"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,79L89,79"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M29,19L29,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M39,19L39,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M49,19L49,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M59,19L59,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M69,19L69,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M79,19L79,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-</vector>
+Index: mobileprogramming-master/app/src/main/res/layout/fragment_account.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/fragment_account.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/fragment_account.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,82 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".AccountFragment">
+-
+-    <!-- TODO: Update blank fragment layout -->
+-    <LinearLayout
+-        android:background="#0000AF"
+-        android:layout_width="match_parent"
+-        android:layout_height="100dp"/>
+-
+-    <TextView
+-        android:text="Account"
+-        android:textColor="#ffffff"
+-        android:textSize="20dp"
+-        android:layout_marginTop="10dp"
+-        android:layout_marginLeft="15dp"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"/>
+-
+-    <ImageView
+-        android:id="@+id/imageView"
+-        android:layout_width="99dp"
+-        android:layout_height="93dp"
+-        android:layout_marginTop="60dp"
+-        android:layout_marginLeft="160dp"
+-        tools:src="@tools:sample/avatars" />
+-
+-    <EditText
+-        android:id="@+id/Username"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:ems="10"
+-        android:textSize="15dp"
+-        android:layout_marginTop="200dp"
+-        android:layout_marginLeft="120dp"
+-        android:textColor="#000000"
+-        android:inputType="textPersonName"
+-        android:text="Username" />
+-
+-    <EditText
+-        android:id="@+id/Email"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:ems="10"
+-        android:textSize="15dp"
+-        android:textColor="#000000"
+-        android:layout_marginTop="270dp"
+-        android:layout_marginLeft="120dp"
+-        android:inputType="textPersonName"
+-        android:text="Email" />
+-
+-    <EditText
+-        android:id="@+id/Username"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:ems="10"
+-        android:textSize="15dp"
+-        android:layout_marginTop="330dp"
+-        android:layout_marginLeft="120dp"
+-        android:textColor="#000000"
+-        android:inputType="textPersonName"
+-        android:text="Password" />
+-
+-    <!-- Bottom Navigation -->
+-    <com.google.android.material.bottomnavigation.BottomNavigationView
+-        android:id="@+id/bottom_navigation"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_alignParentBottom="true"
+-        android:background="#0000AF"
+-        android:layout_marginTop="550dp"
+-        android:elevation="50dp"
+-        app:elevation="50dp"
+-        app:itemIconSize="30dp"
+-        app:menu="@menu/bottom_navigation"
+-        app:itemIconTint="#fff"
+-        app:itemTextColor="#fff"/>
+-</FrameLayout>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/layout/header.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/header.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/header.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,23 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:orientation="horizontal"
+-    android:layout_width="match_parent"
+-    android:layout_height="160dp"
+-    android:background="@color/colorPrimary"
+-    android:padding="20dp">
+-
+-    <ImageView
+-        android:layout_width="75dp"
+-        android:layout_height="75dp"
+-        android:src="@drawable/ic_account_circle_black_24dp"
+-        android:layout_gravity="center"/>
+-
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Name"
+-        android:textColor="#fff"
+-        android:layout_gravity="center"
+-        android:layout_marginLeft="20dp"/>
+-
+-</LinearLayout>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/values/styles.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/values/styles.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/values/styles.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,11 +0,0 @@
+-<resources>
+-
+-    <!-- Base application theme. -->
+-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+-        <!-- Customize your theme here. -->
+-        <item name="colorPrimary">@color/colorPrimary</item>
+-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+-        <item name="colorAccent">@color/colorAccent</item>
+-    </style>
+-
+-</resources>
+Index: mobileprogramming-master/app/src/main/AndroidManifest.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/AndroidManifest.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/AndroidManifest.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,27 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-    package="com.example.lockinapp">
+-
+-    <uses-permission android:name="android.permission.INTERNET" />
+-    <uses-permission android:name="android.intent.action.VIEW"/>
+-
+-
+-    <application
+-        android:allowBackup="true"
+-        android:icon="@mipmap/ic_launcher"
+-        android:label="@string/app_name"
+-        android:roundIcon="@mipmap/ic_launcher_round"
+-        android:supportsRtl="true"
+-        android:theme="@style/AppTheme">
+-        <activity android:name=".ContactUs"></activity>
+-        <activity android:name=".MyAccount" />
+-        <activity android:name=".MainActivity">
+-            <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
+-
+-                <category android:name="android.intent.category.LAUNCHER" />
+-            </intent-filter>
+-        </activity>
+-    </application>
+-
+-</manifest>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/layout/manga_tab.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/manga_tab.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/manga_tab.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,25 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:orientation="vertical" android:layout_width="match_parent"
+-    android:layout_height="match_parent">
+-
+-
+-    <ProgressBar
+-        android:id="@+id/mangaLoading"
+-        android:layout_width="wrap_content"
+-        android:layout_height="match_parent"
+-        android:layout_gravity="center"/>
+-
+-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+-        android:id="@+id/mangaRefresh"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent">
+-
+-        <androidx.recyclerview.widget.RecyclerView
+-            android:id="@+id/MangaRecycler"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"/>
+-
+-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+-
+-</LinearLayout>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/Data/DataRetrofit.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/Data/DataRetrofit.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/Data/DataRetrofit.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,20 +0,0 @@
+-package com.example.lockinapp.Data;
+-
+-import retrofit2.Retrofit;
+-import retrofit2.converter.gson.GsonConverterFactory;
+-
+-public class DataRetrofit {
+-
+-    private final static String Base_url = "https://api.jikan.moe/";
+-    private static Retrofit retrofit;
+-
+-    public static Retrofit getData(){
+-        retrofit = new Retrofit.Builder()
+-                .baseUrl(Base_url)
+-                .addConverterFactory(GsonConverterFactory.create())
+-                .build();
+-
+-        return retrofit;
+-    }
+-
+-}
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/ViewPagerAdapter.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/ViewPagerAdapter.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/ViewPagerAdapter.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,42 +0,0 @@
+-package com.example.lockinapp;
+-
+-import androidx.annotation.NonNull;
+-import androidx.annotation.Nullable;
+-import androidx.fragment.app.Fragment;
+-import androidx.fragment.app.FragmentManager;
+-import androidx.fragment.app.FragmentPagerAdapter;
+-
+-import java.util.ArrayList;
+-import java.util.List;
+-
+-public class ViewPagerAdapter extends FragmentPagerAdapter {
+-
+-    private final List<Fragment> fragmentList = new ArrayList<>();
+-    private final List<String> FragmentListTitles = new ArrayList<>();
+-
+-    public ViewPagerAdapter(@NonNull FragmentManager fm) {
+-        super(fm);
+-    }
+-
+-    @NonNull
+-    @Override
+-    public Fragment getItem(int position) {
+-        return fragmentList.get(position);
+-    }
+-
+-    @Override
+-    public int getCount() {
+-        return FragmentListTitles.size();
+-    }
+-
+-    @Nullable
+-    @Override
+-    public CharSequence getPageTitle(int position) {
+-        return FragmentListTitles.get(position);
+-    }
+-
+-    public void addFragment(Fragment fragment, String Title){
+-        fragmentList.add(fragment);
+-        FragmentListTitles.add(Title);
+-    }
+-}
+Index: mobileprogramming-master/settings.gradle
+===================================================================
+--- mobileprogramming-master/settings.gradle	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/settings.gradle	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,1 +0,0 @@
+-include ':app'
+Index: mobileprogramming-master/app/src/main/res/values/strings.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/values/strings.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/values/strings.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,9 +0,0 @@
+-<resources>
+-    <string name="app_name">AnimaList</string>
+-
+-    <string name="start">Start</string>
+-    <string name="close">Close</string>
+-    <!-- TODO: Remove or change this placeholder text -->
+-    <string name="hello_blank_fragment">Hello blank fragment</string>
+-
+-</resources>
+Index: mobileprogramming-master/app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable-v24/ic_launcher_foreground.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable-v24/ic_launcher_foreground.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,34 +0,0 @@
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:aapt="http://schemas.android.com/aapt"
+-    android:width="108dp"
+-    android:height="108dp"
+-    android:viewportWidth="108"
+-    android:viewportHeight="108">
+-    <path
+-        android:fillType="evenOdd"
+-        android:pathData="M32,64C32,64 38.39,52.99 44.13,50.95C51.37,48.37 70.14,49.57 70.14,49.57L108.26,87.69L108,109.01L75.97,107.97L32,64Z"
+-        android:strokeWidth="1"
+-        android:strokeColor="#00000000">
+-        <aapt:attr name="android:fillColor">
+-            <gradient
+-                android:endX="78.5885"
+-                android:endY="90.9159"
+-                android:startX="48.7653"
+-                android:startY="61.0927"
+-                android:type="linear">
+-                <item
+-                    android:color="#44000000"
+-                    android:offset="0.0" />
+-                <item
+-                    android:color="#00000000"
+-                    android:offset="1.0" />
+-            </gradient>
+-        </aapt:attr>
+-    </path>
+-    <path
+-        android:fillColor="#FFFFFF"
+-        android:fillType="nonZero"
+-        android:pathData="M66.94,46.02L66.94,46.02C72.44,50.07 76,56.61 76,64L32,64C32,56.61 35.56,50.11 40.98,46.06L36.18,41.19C35.45,40.45 35.45,39.3 36.18,38.56C36.91,37.81 38.05,37.81 38.78,38.56L44.25,44.05C47.18,42.57 50.48,41.71 54,41.71C57.48,41.71 60.78,42.57 63.68,44.05L69.11,38.56C69.84,37.81 70.98,37.81 71.71,38.56C72.44,39.3 72.44,40.45 71.71,41.19L66.94,46.02ZM62.94,56.92C64.08,56.92 65,56.01 65,54.88C65,53.76 64.08,52.85 62.94,52.85C61.8,52.85 60.88,53.76 60.88,54.88C60.88,56.01 61.8,56.92 62.94,56.92ZM45.06,56.92C46.2,56.92 47.13,56.01 47.13,54.88C47.13,53.76 46.2,52.85 45.06,52.85C43.92,52.85 43,53.76 43,54.88C43,56.01 43.92,56.92 45.06,56.92Z"
+-        android:strokeWidth="1"
+-        android:strokeColor="#00000000" />
+-</vector>
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/MangaTab.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/MangaTab.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/MangaTab.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,104 +0,0 @@
+-package com.example.lockinapp;
+-
+-import android.os.Bundle;
+-import android.os.Handler;
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.ViewGroup;
+-import android.widget.ProgressBar;
+-import android.widget.Toast;
+-
+-import androidx.annotation.NonNull;
+-import androidx.annotation.Nullable;
+-import androidx.fragment.app.Fragment;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+-import androidx.recyclerview.widget.RecyclerView;
+-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+-
+-import com.example.lockinapp.Data.ApiService;
+-import com.example.lockinapp.Data.DataRetrofit;
+-import com.example.lockinapp.Model.Manga;
+-import com.example.lockinapp.Model.MangaItem;
+-import com.google.android.material.snackbar.Snackbar;
+-
+-import java.util.List;
+-
+-import retrofit2.Call;
+-import retrofit2.Callback;
+-import retrofit2.Response;
+-
+-public class MangaTab extends Fragment {
+-
+-    private View view;
+-    private RecyclerView recyclerView;
+-    private RecyclerView.Adapter layoutAdapter;
+-    private int manga_page;
+-    private ProgressBar Loading;
+-    private SwipeRefreshLayout Refresh;
+-
+-    public MangaTab(){
+-
+-    }
+-
+-    @Nullable
+-    @Override
+-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+-
+-        view = inflater.inflate(R.layout.manga_tab, container, false);
+-        recyclerView = view.findViewById(R.id.MangaRecycler);
+-        recyclerView.setHasFixedSize(true);
+-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+-        Loading = view.findViewById(R.id.mangaLoading);
+-        Refresh = view.findViewById(R.id.mangaRefresh);
+-
+-        manga_page = 1;
+-        ResponseData(manga_page);
+-        Refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+-            @Override
+-            public void onRefresh() {
+-                ResponseData(1);
+-                Loading.setVisibility(View.GONE);
+-            }
+-        });
+-
+-        return view;
+-    }
+-
+-    private void ResponseData(int manga_page){
+-        ApiService apiService = DataRetrofit.getData().create(ApiService.class);
+-        Loading.setVisibility(View.VISIBLE);
+-        recyclerView.setVisibility(View.GONE);
+-        apiService.getAllManga(manga_page)
+-                .enqueue(new Callback<Manga>() {
+-                    @Override
+-                    public void onResponse(Call<Manga> call, Response<Manga> response) {
+-                        List<MangaItem> items = response.body().getTopMangaItems();
+-
+-                        Refresh.setRefreshing(false);
+-                        Loading.setVisibility(View.GONE);
+-                        recyclerView.setVisibility(View.VISIBLE);
+-                        if (items != null){
+-                            layoutAdapter = new MangaAdapter(items);
+-                            recyclerView.setAdapter(layoutAdapter);
+-                        }else{
+-                            Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
+-                        }
+-                    }
+-
+-                    @Override
+-                    public void onFailure(Call<Manga> call, Throwable t) {
+-                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
+-                        Loading.setVisibility(View.GONE);
+-                        Refresh.setRefreshing(false);
+-                        final Handler handler = new Handler();
+-                        handler.postDelayed(new Runnable() {
+-                            @Override
+-                            public void run() {
+-                                Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
+-                            }
+-                        }, 4000);
+-                    }
+-                });
+-    }
+-
+-}
+Index: mobileprogramming-master/gradlew.bat
+===================================================================
+--- mobileprogramming-master/gradlew.bat	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/gradlew.bat	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,84 +0,0 @@
+-@if "%DEBUG%" == "" @echo off
+-@rem ##########################################################################
+-@rem
+-@rem  Gradle startup script for Windows
+-@rem
+-@rem ##########################################################################
+-
+-@rem Set local scope for the variables with windows NT shell
+-if "%OS%"=="Windows_NT" setlocal
+-
+-set DIRNAME=%~dp0
+-if "%DIRNAME%" == "" set DIRNAME=.
+-set APP_BASE_NAME=%~n0
+-set APP_HOME=%DIRNAME%
+-
+-@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+-set DEFAULT_JVM_OPTS=
+-
+-@rem Find java.exe
+-if defined JAVA_HOME goto findJavaFromJavaHome
+-
+-set JAVA_EXE=java.exe
+-%JAVA_EXE% -version >NUL 2>&1
+-if "%ERRORLEVEL%" == "0" goto init
+-
+-echo.
+-echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+-echo.
+-echo Please set the JAVA_HOME variable in your environment to match the
+-echo location of your Java installation.
+-
+-goto fail
+-
+-:findJavaFromJavaHome
+-set JAVA_HOME=%JAVA_HOME:"=%
+-set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+-
+-if exist "%JAVA_EXE%" goto init
+-
+-echo.
+-echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
+-echo.
+-echo Please set the JAVA_HOME variable in your environment to match the
+-echo location of your Java installation.
+-
+-goto fail
+-
+-:init
+-@rem Get command-line arguments, handling Windows variants
+-
+-if not "%OS%" == "Windows_NT" goto win9xME_args
+-
+-:win9xME_args
+-@rem Slurp the command line arguments.
+-set CMD_LINE_ARGS=
+-set _SKIP=2
+-
+-:win9xME_args_slurp
+-if "x%~1" == "x" goto execute
+-
+-set CMD_LINE_ARGS=%*
+-
+-:execute
+-@rem Setup the command line
+-
+-set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
+-
+-@rem Execute Gradle
+-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
+-
+-:end
+-@rem End local scope for the variables with windows NT shell
+-if "%ERRORLEVEL%"=="0" goto mainEnd
+-
+-:fail
+-rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
+-rem the _cmd.exe /c_ return code!
+-if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
+-exit /b 1
+-
+-:mainEnd
+-if "%OS%"=="Windows_NT" endlocal
+-
+-:omega
+Index: mobileprogramming-master/app/src/main/res/layout/anime_layout.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/anime_layout.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/anime_layout.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,90 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:card_view="http://schemas.android.com/tools"
+-    android:orientation="vertical"
+-    android:layout_width="match_parent"
+-    android:layout_height="150dp"
+-    android:layout_margin="6dp"
+-    android:clickable="true"
+-    card_view:cardElevation="8dp"
+-    android:foreground="?android:attr/selectableItemBackground"
+-    android:focusable="true">
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:orientation="horizontal"
+-        android:layout_marginTop="10dp"
+-        android:layout_marginLeft="10dp"
+-        android:layout_marginBottom="10dp"
+-        android:gravity="center">
+-
+-        <ImageView
+-            android:id="@+id/anime_image"
+-            android:layout_width="80dp"
+-            android:layout_height="80dp"
+-            android:src="@drawable/ec5" />
+-
+-        <LinearLayout
+-            android:layout_width="0dp"
+-            android:layout_height="match_parent"
+-            android:layout_weight="1"
+-            android:orientation="vertical"
+-            android:gravity="center">
+-
+-            <TextView
+-                android:text="Anime Title"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:id="@+id/anime_title"
+-                android:textStyle="bold"
+-                android:textSize="18sp"/>
+-
+-            <TextView
+-                android:id="@+id/anime_type"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:text="Anime type"/>
+-
+-            <LinearLayout
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:orientation="horizontal">
+-
+-                <TextView
+-                    android:id="@+id/anime_startEnd"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:text="Anime Start End"
+-                    android:layout_marginRight="30dp"/>
+-
+-                <ImageView
+-
+-                    android:id="@+id/rating_image"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:src="@drawable/ic_star"/>
+-
+-                <TextView
+-                    android:id="@+id/anime_rating"
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:text="Rating"
+-                    android:layout_gravity="center"/>
+-
+-            </LinearLayout>
+-
+-            <TextView
+-                android:id="@+id/anime_members"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:text="Anime Members"/>
+-
+-        </LinearLayout>
+-
+-
+-    </LinearLayout>
+-
+-
+-</androidx.cardview.widget.CardView>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/ContactUs.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/ContactUs.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/ContactUs.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,14 +0,0 @@
+-package com.example.lockinapp;
+-
+-import androidx.appcompat.app.AppCompatActivity;
+-
+-import android.os.Bundle;
+-
+-public class ContactUs extends AppCompatActivity {
+-
+-    @Override
+-    protected void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_contact_us);
+-    }
+-}
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_home_black_24dp.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_home_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_home_black_24dp.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<vector android:height="24dp" android:tint="#FFFFFF"
+-    android:viewportHeight="24.0" android:viewportWidth="24.0"
+-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+-    <path android:fillColor="#FF000000" android:pathData="M10,20v-6h4v6h5v-8h3L12,3 2,12h3v8z"/>
+-</vector>
+Index: mobileprogramming-master/gradle.properties
+===================================================================
+--- mobileprogramming-master/gradle.properties	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/gradle.properties	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,19 +0,0 @@
+-# Project-wide Gradle settings.
+-# IDE (e.g. Android Studio) users:
+-# Gradle settings configured through the IDE *will override*
+-# any settings specified in this file.
+-# For more details on how to configure your build environment visit
+-# http://www.gradle.org/docs/current/userguide/build_environment.html
+-# Specifies the JVM arguments used for the daemon process.
+-# The setting is particularly useful for tweaking memory settings.
+-org.gradle.jvmargs=-Xmx1536m
+-# When configured, Gradle will run in incubating parallel mode.
+-# This option should only be used with decoupled projects. More details, visit
+-# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+-# org.gradle.parallel=true
+-# AndroidX package structure to make it clearer which packages are bundled with the
+-# Android operating system, and which are packaged with your app's APK
+-# https://developer.android.com/topic/libraries/support-library/androidx-rn
+-android.useAndroidX=true
+-# Automatically convert third-party libraries to use AndroidX
+-android.enableJetifier=true
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/MangaAdapter.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/MangaAdapter.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/MangaAdapter.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,93 +0,0 @@
+-package com.example.lockinapp;
+-
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.ViewGroup;
+-import android.widget.ImageView;
+-import android.widget.TextView;
+-
+-import androidx.annotation.NonNull;
+-import androidx.recyclerview.widget.RecyclerView;
+-import com.example.lockinapp.Model.MangaItem;
+-import com.squareup.picasso.Picasso;
+-
+-import java.text.DecimalFormat;
+-import java.text.DecimalFormatSymbols;
+-import java.util.List;
+-
+-import butterknife.BindView;
+-import butterknife.ButterKnife;
+-
+-public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MyViewHolder> {
+-
+-    List<MangaItem> mangaItems;
+-
+-    public MangaAdapter(List<MangaItem> mangaItems) {
+-        this.mangaItems = mangaItems;
+-    }
+-
+-    @NonNull
+-    @Override
+-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+-
+-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.manga_layout, parent, false);
+-        return new MyViewHolder(view);
+-    }
+-
+-    @Override
+-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+-
+-        final MangaItem item = mangaItems.get(position);
+-
+-        DecimalFormat members = (DecimalFormat) DecimalFormat.getNumberInstance();
+-        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols();
+-        formatSymbols.setGroupingSeparator('.');
+-
+-        members.setDecimalFormatSymbols(formatSymbols);
+-
+-        Picasso.get().load(item.getManga_image_url()).into(holder.mangaImage);
+-        holder.mangaTitle.setText(item.getManga_Title());
+-        holder.mangaVolumes.setText(String.format("%s (%d)", item.getManga_Type(), item.getManga_Volumes()));
+-        holder.mangaStartEnd.setText(String.format("%s - %s", item.getManga_Start_date(), item.getManga_End_date()));
+-        holder.mangaMembers.setText(String.format("%s Members", members.format(item.getManga_Members())));
+-        holder.mangaRating.setText(String.valueOf(item.getManga_Score()));
+-
+-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+-//            @Override
+-//            public void onClick(View view) {
+-//
+-//            }
+-//        });
+-
+-    }
+-
+-    @Override
+-    public int getItemCount() {
+-        return mangaItems.size();
+-    }
+-
+-
+-    public class MyViewHolder extends RecyclerView.ViewHolder {
+-
+-        @BindView(R.id.manga_image)
+-        ImageView mangaImage;
+-        @BindView(R.id.manga_title)
+-        TextView mangaTitle;
+-        @BindView(R.id.manga_volumes)
+-        TextView mangaVolumes;
+-        @BindView(R.id.manga_startEnd)
+-        TextView mangaStartEnd;
+-        @BindView(R.id.manga_members)
+-        TextView mangaMembers;
+-        @BindView(R.id.manga_rating)
+-        TextView mangaRating;
+-        @BindView(R.id.manga_rating_image)
+-        ImageView ratingImage;
+-
+-        public MyViewHolder(View view) {
+-            super(view);
+-            ButterKnife.bind(this, itemView);
+-        }
+-
+-    }
+-}
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_mail.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_mail.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_mail.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<vector android:height="24dp" android:tint="#FFFFFF"
+-    android:viewportHeight="24.0" android:viewportWidth="24.0"
+-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+-    <path android:fillColor="#FF000000" android:pathData="M20,4L4,4c-1.1,0 -1.99,0.9 -1.99,2L2,18c0,1.1 0.9,2 2,2h16c1.1,0 2,-0.9 2,-2L22,6c0,-1.1 -0.9,-2 -2,-2zM20,8l-8,5 -8,-5L4,6l8,5 8,-5v2z"/>
+-</vector>
+Index: mobileprogramming-master/app/src/main/res/drawable/ic_star.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/drawable/ic_star.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/drawable/ic_star.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,5 +0,0 @@
+-<vector android:height="24dp" android:tint="#FFEA0C"
+-    android:viewportHeight="24.0" android:viewportWidth="24.0"
+-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+-    <path android:fillColor="#FF000000" android:pathData="M12,17.27L18.18,21l-1.64,-7.03L22,9.24l-7.19,-0.61L12,2 9.19,8.63 2,9.24l5.46,4.73L5.82,21z"/>
+-</vector>
+Index: mobileprogramming-master/app/src/main/res/layout/fragment_home.xml
+===================================================================
+--- mobileprogramming-master/app/src/main/res/layout/fragment_home.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/res/layout/fragment_home.xml	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,51 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:orientation="vertical">
+-
+-    <!-- AppBar -->
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="140dp"
+-        android:background="#fff"
+-        android:elevation="0dp"
+-        android:id="@+id/AppBar">
+-
+-        <!-- AppBar Content -->
+-        <RelativeLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="horizontal">
+-
+-            <ImageView
+-                android:layout_width="match_parent"
+-                android:layout_height="140dp"
+-                android:background="@drawable/narutoheader"/>
+-
+-
+-        </RelativeLayout>
+-        <!-- Akhir dari AppBar Content -->
+-
+-    </LinearLayout>
+-    <!-- Akhir dari AppBar -->
+-
+-    <com.google.android.material.tabs.TabLayout
+-        android:id="@+id/TabLayout"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        app:tabGravity="fill"
+-        app:tabMode="fixed"
+-        android:background="#fff"
+-        app:tabTextColor="@color/design_default_color_primary_variant"
+-        app:tabIndicatorColor="@color/colorPrimary"/>
+-
+-    <androidx.viewpager.widget.ViewPager
+-        android:id="@+id/ViewPager"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent">
+-
+-    </androidx.viewpager.widget.ViewPager>
+-
+-</LinearLayout>
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/MyAccount.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/MyAccount.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/MyAccount.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,14 +0,0 @@
+-package com.example.lockinapp;
+-
+-import androidx.appcompat.app.AppCompatActivity;
+-
+-import android.os.Bundle;
+-
+-public class MyAccount extends AppCompatActivity {
+-
+-    @Override
+-    protected void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_my_account);
+-    }
+-}
+\ No newline at end of file
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/AnimeAdapter.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/AnimeAdapter.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/AnimeAdapter.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,94 +0,0 @@
+-package com.example.lockinapp;
+-
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.ViewGroup;
+-import android.widget.ImageView;
+-import android.widget.TextView;
+-
+-import androidx.annotation.NonNull;
+-import androidx.recyclerview.widget.RecyclerView;
+-
+-import com.example.lockinapp.Model.AnimItem;
+-import com.squareup.picasso.Picasso;
+-
+-import java.text.DecimalFormat;
+-import java.text.DecimalFormatSymbols;
+-import java.util.List;
+-
+-import butterknife.BindView;
+-import butterknife.ButterKnife;
+-
+-public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder> {
+-
+-    List<AnimItem> animeList;
+-
+-    public AnimeAdapter(List<AnimItem> animItems) {
+-        this.animeList = animItems;
+-    }
+-
+-    @NonNull
+-    @Override
+-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+-
+-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.anime_layout, parent, false);
+-        return new MyViewHolder(view);
+-    }
+-
+-    @Override
+-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+-
+-        final AnimItem item = animeList.get(position);
+-
+-        DecimalFormat members = (DecimalFormat) DecimalFormat.getNumberInstance();
+-        DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols();
+-        formatSymbols.setGroupingSeparator('.');
+-
+-        members.setDecimalFormatSymbols(formatSymbols);
+-
+-        Picasso.get().load(item.getImageUrl()).into(holder.animeImage);
+-        holder.animeTitle.setText(item.getTitle());
+-        holder.animeType.setText(String.format("%s (%d)", item.getType(), item.getEpisodes()));
+-        holder.animeStartEnd.setText(String.format("%s - %s", item.getStart_date(), item.getEnd_date()));
+-        holder.animeMembers.setText(String.format("%s Members", members.format(item.getMembers())));
+-        holder.animeRating.setText(String.valueOf(item.getScore()));
+-
+-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+-//            @Override
+-//            public void onClick(View view) {
+-//
+-//            }
+-//        });
+-
+-    }
+-
+-    @Override
+-    public int getItemCount() {
+-        return animeList.size();
+-    }
+-
+-
+-    public class MyViewHolder extends RecyclerView.ViewHolder {
+-
+-        @BindView(R.id.anime_image)
+-        ImageView animeImage;
+-        @BindView(R.id.anime_title)
+-        TextView animeTitle;
+-        @BindView(R.id.anime_type)
+-        TextView animeType;
+-        @BindView(R.id.anime_startEnd)
+-        TextView animeStartEnd;
+-        @BindView(R.id.anime_members)
+-        TextView animeMembers;
+-        @BindView(R.id.anime_rating)
+-        TextView animeRating;
+-        @BindView(R.id.rating_image)
+-        ImageView ratingImage;
+-
+-        public MyViewHolder(View view) {
+-            super(view);
+-            ButterKnife.bind(this, itemView);
+-        }
+-
+-    }
+-}
+Index: mobileprogramming-master/app/src/main/java/com/example/lockinapp/HomeFragment.java
+===================================================================
+--- mobileprogramming-master/app/src/main/java/com/example/lockinapp/HomeFragment.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/app/src/main/java/com/example/lockinapp/HomeFragment.java	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,47 +0,0 @@
+-package com.example.lockinapp;
+-
+-import android.os.Bundle;
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.ViewGroup;
+-
+-import androidx.annotation.NonNull;
+-import androidx.annotation.Nullable;
+-import androidx.fragment.app.Fragment;
+-import androidx.viewpager.widget.ViewPager;
+-
+-import com.google.android.material.tabs.TabLayout;
+-
+-public class HomeFragment extends Fragment {
+-
+-
+-    View view;
+-    TabLayout tabLayout;
+-    ViewPager viewPager;
+-
+-
+-
+-    @Nullable
+-    @Override
+-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+-
+-        view = inflater.inflate(R.layout.fragment_home, container, false);
+-
+-        tabLayout = view.findViewById(R.id.TabLayout);
+-        viewPager = view.findViewById(R.id.ViewPager);
+-        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+-
+-        //adding fragment
+-        adapter.addFragment(new AnimeTab(), "Anime");
+-        adapter.addFragment(new MangaTab(), "Manga");
+-        //adapter setup
+-        viewPager.setAdapter(adapter);
+-        tabLayout.setupWithViewPager(viewPager);
+-
+-        return view;
+-    }
+-
+-
+-
+-
+-}
+Index: mobileprogramming-master/local.properties
+===================================================================
+--- mobileprogramming-master/local.properties	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ mobileprogramming-master/local.properties	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
+@@ -1,8 +0,0 @@
+-## This file must *NOT* be checked into Version Control Systems,
+-# as it contains information specific to your local configuration.
+-#
+-# Location of the SDK. This is only used by Gradle.
+-# For customization when using a Version Control System, please read the
+-# header note.
+-#Wed Dec 02 14:14:35 ICT 2020
+-sdk.dir=C\:\\Users\\HP PAV\\AppData\\Local\\Android\\Sdk
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Sat Nov 28 19:35:22 ICT 2020\r\ndistributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-6.5-bin.zip\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision f7e2eacd846298dfd8f966abd36044409550fbcd)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1606971572430)
+@@ -1,6 +1,6 @@
+-#Sat Nov 28 19:35:22 ICT 2020
++#Thu Dec 03 13:35:33 JST 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-bin.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-all.zip
+diff --git .idea/shelf/Uncommitted_changes_before_Checkout_at_12_1_2020_10_55_PM__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Checkout_at_12_1_2020_10_55_PM__Default_Changelist_.xml
+diff --git .idea/shelf/Uncommitted_changes_before_Checkout_at_12_1_2020_10_58_PM__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Checkout_at_12_1_2020_10_58_PM__Default_Changelist_.xml
