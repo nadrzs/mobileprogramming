@@ -12,24 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"/>
 
-    <TextView
-        android:text="Account"
-        android:textColor="#ffffff"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="99dp"
         android:layout_height="93dp"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="160dp"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/ec5"/>
 
-    <EditText
+    <TextView
         android:id="@+id/Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,9 +30,9 @@
         android:layout_marginLeft="120dp"
         android:textColor="#000000"
         android:inputType="textPersonName"
-        android:text="Username" />
+        android:text="Username"/>
 
-    <EditText
+    <TextView
         android:id="@+id/Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,32 +42,7 @@
         android:layout_marginTop="270dp"
         android:layout_marginLeft="120dp"
         android:inputType="textPersonName"
-        android:text="Email" />
+        android:text="Email"/>
 
-    <EditText
-        android:id="@+id/Username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="15dp"
-        android:layout_marginTop="330dp"
-        android:layout_marginLeft="120dp"
-        android:textColor="#000000"
-        android:inputType="textPersonName"
-        android:text="Password" />
 
-    <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#0000AF"
-        android:layout_marginTop="550dp"
-        android:elevation="50dp"
-        app:elevation="50dp"
-        app:itemIconSize="30dp"
-        app:menu="@menu/bottom_navigation"
-        app:itemIconTint="#fff"
-        app:itemTextColor="#fff"/>
 </FrameLayout>
