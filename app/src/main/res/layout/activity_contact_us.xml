@@ -4,7 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".ContactUs">
+
+    <ImageView
+        android:id="@+id/fb"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="275dp"
+        android:layout_marginRight="310dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fb" />
+
+    <ImageView
+        android:id="@+id/ig"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="310dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fb"
+        app:srcCompat="@drawable/ig" />
+
+    <ImageView
+        android:id="@+id/twt"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="310dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ig"
+        app:srcCompat="@drawable/twt" />
 
     <TextView
         android:id="@+id/ContactUs"
@@ -22,10 +56,10 @@
         android:id="@+id/EmailDet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email : \nLockInOfficialMail@lockmail.com"
-        android:textSize="10pt"
+        android:text="Email : \nAnimaList@support.com"
+        android:textSize="9pt"
         android:lineSpacingMultiplier="1.3"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ContactUs"
@@ -38,9 +72,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Telephone : \n021-xxx-xxx"
-        android:textSize="10pt"
+        android:textSize="9pt"
         android:lineSpacingMultiplier="1.3"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ContactUs"
@@ -52,10 +86,10 @@
         android:id="@+id/SocialMedia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Social Media: \n Facebook\n Instagram\n Twitter"
-        android:textSize="10pt"
+        android:text="Social Media: \n        Anima List Official\n        AnimaList\n        AnimaListOfficial"
+        android:textSize="9pt"
         android:lineSpacingMultiplier="1.3"
-        android:layout_marginTop="225dp"
+        android:layout_marginTop="180dp"
         android:layout_marginLeft="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ContactUs"
@@ -67,9 +101,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Office:"
-        android:textSize="10pt"
+        android:textSize="9pt"
         android:lineSpacingMultiplier="1.3"
-        android:layout_marginTop="395dp"
+        android:layout_marginTop="330dp"
         android:layout_marginLeft="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ContactUs"
@@ -77,13 +111,16 @@
         android:textColor="#023ebf"
         />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="232dp"
-        android:layout_height="146dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="30dp"
+    <fragment
+        android:layout_width="350sp"
+        android:layout_height="170sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/OfficeMap" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="425dp"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
