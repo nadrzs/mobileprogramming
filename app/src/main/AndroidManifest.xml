@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lockinapp">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.intent.action.VIEW" />
 
@@ -12,10 +14,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/maps" />
+      
         <activity android:name=".AboutUs"></activity>
-        <activity android:name=".ContactUs" />
-        <activity android:name=".MyAccount" />
-        <activity android:name=".MainActivity">
+      
+        <activity
+            android:name=".EditProfile"
+            android:theme="@style/AppTheme.ABEP">
+        </activity>
+        <activity
+            android:name=".ForgotPassword"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Register"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ContactUs"
+            android:theme="@style/AppTheme.ABCU"/>
+        <activity
+            android:name=".MyAccount"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".Login"
+            android:theme="@style/AppTheme.NoActionBar">
+          
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

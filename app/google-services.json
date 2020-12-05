@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "712270843706",
+    "firebase_url": "https://animalist-24eb1.firebaseio.com",
+    "project_id": "animalist-24eb1",
+    "storage_bucket": "animalist-24eb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712270843706:android:7e583890015e32e1fb4a03",
+        "android_client_info": {
+          "package_name": "com.example.lockinapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712270843706-h2ugqiuiq1lvfa2c00dce7o9gkeckoi9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lockinapp",
+            "certificate_hash": "493b0c263bb6f0ff5050cddc674ab6584dcd056d"
+          }
+        },
+        {
+          "client_id": "712270843706-h7lmlbdfen9716kdpuhk3rgc4cgth4gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzDKMgyIA-nocOSoxiE3O-D_IJCBEijTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712270843706-h7lmlbdfen9716kdpuhk3rgc4cgth4gb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
