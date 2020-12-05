@@ -78,24 +78,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.nav_drawer_account:
-                Toast.makeText(this, "Account", Toast.LENGTH_SHORT).show();
-                break;
 
             case R.id.nav_drawer_contact_us:
-
                 Intent intent = new Intent(this, ContactUs.class);
                 startActivity(intent);
-
                 break;
 
             case R.id.nav_drawer_about_us:
                 Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.nav_drawer_setting:
-                Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
-                //Koding disini rak
                 break;
 
             case R.id.nav_drawer_logout:

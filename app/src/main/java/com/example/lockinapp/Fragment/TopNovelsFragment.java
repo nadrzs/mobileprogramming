@@ -73,7 +73,7 @@ public class TopNovelsFragment extends Fragment {
                         Loading.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                         if (items != null){
-                            layoutAdapter = new MangaAdapter(items);
+                            layoutAdapter = new MangaAdapter(getActivity(), items);
                             recyclerView.setAdapter(layoutAdapter);
                         }else{
                             Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
