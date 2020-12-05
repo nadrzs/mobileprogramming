@@ -64,6 +64,9 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder
         holder.animeMembers.setText(String.format("%s Members", members.format(item.getMembers())));
         holder.animeRating.setText(String.valueOf(item.getScore()));
 
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
+        dataBaseHelper.addRecord(item);
+
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

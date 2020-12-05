@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.lockinapp.Data.DataBaseHelper;
 import com.example.lockinapp.Model.MangaItem;
 import com.squareup.picasso.Picasso;
 
@@ -60,6 +62,9 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MyViewHolder
         holder.mangaStartEnd.setText(String.format("%s - %s", item.getManga_Start_date(), item.getManga_End_date()));
         holder.mangaMembers.setText(String.format("%s Members", members.format(item.getManga_Members())));
         holder.mangaRating.setText(String.valueOf(item.getManga_Score()));
+
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
+        dataBaseHelper.addMangaRecord(item);
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override

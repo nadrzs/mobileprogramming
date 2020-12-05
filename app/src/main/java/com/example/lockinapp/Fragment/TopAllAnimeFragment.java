@@ -23,6 +23,7 @@ import com.example.lockinapp.Model.Anime;
 import com.example.lockinapp.R;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -91,9 +92,21 @@ public class TopAllAnimeFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<Anime> call, Throwable t) {
-                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
-                        Loading.setVisibility(View.GONE);
+
+                        DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+
+                        List<AnimItem> items2 = new ArrayList<>(dataBaseHelper.getAllRecord());
+
                         Refresh.setRefreshing(false);
+                        Loading.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        if(items2 != null){
+                            layoutAdapter = new AnimeAdapter(getContext(), items2);
+                            recyclerView.setAdapter(layoutAdapter);
+                        }else{
+                            Toast.makeText(getActivity(), "Database Is Empty", Toast.LENGTH_SHORT).show();
+                        }
+
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
