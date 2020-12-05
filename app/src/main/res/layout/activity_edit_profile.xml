@@ -89,20 +89,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailBoxEP" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigationEP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#0000AF"
-        android:elevation="50dp"
-        app:elevation="50dp"
-        app:itemIconSize="30dp"
-        app:itemIconTint="#fff"
-        app:itemTextColor="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
