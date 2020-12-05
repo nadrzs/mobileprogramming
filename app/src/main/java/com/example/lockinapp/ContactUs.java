@@ -32,6 +32,6 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
 
         LatLng Anima = new LatLng(-6.200059163004611, 106.78536584032943);
         map.addMarker(new MarkerOptions().position(Anima).title("Anima Ltd"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(Anima));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(Anima,15.0f));
     }
 }
