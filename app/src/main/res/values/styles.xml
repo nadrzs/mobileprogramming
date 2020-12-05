@@ -4,8 +4,31 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.ABCU">
+        <item name="windowActionBar">true</item>
+        <item name="title">Contact Us</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="AppTheme.ABMA">
+        <item name="windowActionBar">true</item>
+        <item name="title">My Account</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="AppTheme.ABEP">
+        <item name="windowActionBar">true</item>
+        <item name="title">Edit Profile</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
 </resources>

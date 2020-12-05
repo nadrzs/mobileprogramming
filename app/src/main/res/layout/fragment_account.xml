@@ -12,37 +12,87 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"/>
 
+    <TextView
+        android:id="@+id/TittleAF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="My Account"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="99dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="160dp"
-        android:src="@drawable/ec5"/>
+        android:id="@+id/profilePictAF"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dp"
+        android:background="@drawable/white_circle">
+    </ImageView>
 
     <TextView
-        android:id="@+id/Username"
+        android:id="@+id/tittle2AF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="15dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="200dp"
-        android:layout_marginLeft="120dp"
-        android:textColor="#000000"
-        android:inputType="textPersonName"
-        android:text="Username"/>
+        android:text="Username"
+        android:textColor="#0000AF"
+        android:textSize="15dp">
+    </TextView>
 
     <TextView
-        android:id="@+id/Email"
+        android:id="@+id/usernameBoxAF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="15dp"
-        android:textColor="#000000"
-        android:layout_marginTop="270dp"
-        android:layout_marginLeft="120dp"
-        android:inputType="textPersonName"
-        android:text="Email"/>
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="230dp"
+        android:width="350dp"
+        android:height="40dp"
+        android:background="@drawable/text_edge"
+        android:textStyle="italic|bold"
+        android:textColor="#000000">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tittle3AF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="300dp"
+        android:text="Email"
+        android:textColor="#0000AF"
+        android:textSize="15dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/emailBoxAF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="330dp"
+        android:width="350dp"
+        android:height="40dp"
+        android:background="@drawable/text_edge"
+        android:textStyle="italic|bold"
+        android:textColor="#000000">
+    </TextView>
+
+    <Button
+        android:id="@+id/editProfilAF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="480dp"
+        android:width="150dp"
+        android:text="Edit Profile"
+        android:textColor="#0000AF"
+        android:background="@drawable/button_edge_2"
+        android:padding="2dp"/>
 
 
 </FrameLayout>

@@ -2,12 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_drawer_account"
-        android:icon="@drawable/ic_person"
-        android:title="My Account"
-        />
-
-    <item
         android:id="@+id/nav_drawer_contact_us"
         android:icon="@drawable/ic_drafts_black_24dp"
         android:title="Contact Us"
@@ -17,12 +11,6 @@
         android:id="@+id/nav_drawer_about_us"
         android:icon="@drawable/question"
         android:title="About Us"
-        />
-
-    <item
-        android:id="@+id/nav_drawer_setting"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="Setting"
         />
 
     <item
