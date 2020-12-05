@@ -18,7 +18,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/maps" />
-
+      
+        <activity android:name=".AboutUs"></activity>
+      
         <activity
             android:name=".EditProfile"
             android:theme="@style/AppTheme.ABEP">
@@ -39,6 +41,7 @@
         <activity
             android:name=".Login"
             android:theme="@style/AppTheme.NoActionBar">
+          
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
