@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -124,7 +125,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_drawer_about_us:
-                Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
+
+                Intent intent1 = new Intent(this, AboutUs.class);
+                startActivity(intent1);
+
                 break;
 
             case R.id.nav_drawer_logout:
