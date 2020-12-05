@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.lockinapp.Data.ApiService;
+import com.example.lockinapp.Data.DataBaseHelper;
 import com.example.lockinapp.Data.DataRetrofit;
 import com.example.lockinapp.MangaAdapter;
 import com.example.lockinapp.Model.Manga;
@@ -22,6 +23,7 @@ import com.example.lockinapp.Model.MangaItem;
 import com.example.lockinapp.R;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -76,7 +78,7 @@ public class TopAllMangaFragment extends Fragment {
                         Loading.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                         if (items != null){
-                            layoutAdapter = new MangaAdapter(items);
+                            layoutAdapter = new MangaAdapter(getActivity(), items);
                             recyclerView.setAdapter(layoutAdapter);
                         }else{
                             Toast.makeText(getActivity(), "Failed Get Dat !", Toast.LENGTH_SHORT).show();
@@ -85,16 +87,25 @@ public class TopAllMangaFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<Manga> call, Throwable t) {
-                        Toast.makeText(getActivity(), "Low Connection", Toast.LENGTH_SHORT).show();
-                        Loading.setVisibility(View.GONE);
+                        DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
+
+                        List<MangaItem> items2 = new ArrayList<>(dataBaseHelper.getMangaAllRecord());
                         Refresh.setRefreshing(false);
+                        Loading.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        if (items2 != null){
+                            layoutAdapter = new MangaAdapter(getActivity(), items2);
+                            recyclerView.setAdapter(layoutAdapter);
+                        }else{
+                            Toast.makeText(getActivity(), "Failed Get Data !", Toast.LENGTH_SHORT).show();
+                        }
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 Snackbar.make(getView(), "Check Connection", Snackbar.LENGTH_LONG).show();
                             }
-                        }, 4000);
+                        },4000);
                     }
                 });
     }

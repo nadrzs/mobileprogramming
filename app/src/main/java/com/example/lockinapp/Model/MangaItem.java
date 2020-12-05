@@ -37,23 +37,6 @@ public class MangaItem {
     @SerializedName("volumes")
     private int manga_volumes;
 
-    @Override
-    public String toString() {
-        return "MangaItem{" +
-                "manga_score=" + manga_score +
-                ", manga_end_date='" + manga_end_date + '\'' +
-                ", manga_image_url='" + manga_image_url + '\'' +
-                ", manga_start_date='" + manga_start_date + '\'' +
-                ", manga_members=" + manga_members +
-                ", manga_rank=" + manga_rank +
-                ", manga_malId=" + manga_malId +
-                ", manga_title='" + manga_title + '\'' +
-                ", manga_type='" + manga_type + '\'' +
-                ", manga_url='" + manga_url + '\'' +
-                ", manga_volumes=" + manga_volumes +
-                '}';
-    }
-
     public double getManga_Score() {
         return manga_score;
     }
@@ -86,16 +69,8 @@ public class MangaItem {
         return manga_title;
     }
 
-    public void setManga_Title(String title) {
-        this.manga_title = title;
-    }
-
     public String getManga_Type() {
         return manga_type;
-    }
-
-    public void setManga_Type(String type) {
-        this.manga_type = type;
     }
 
     public String getManga_Url() {
@@ -104,5 +79,49 @@ public class MangaItem {
 
     public int getManga_Volumes() {
         return manga_volumes;
+    }
+
+    public void setManga_score(double manga_score) {
+        this.manga_score = manga_score;
+    }
+
+    public void setManga_end_date(String manga_end_date) {
+        this.manga_end_date = manga_end_date;
+    }
+
+    public void setManga_image_url(String manga_image_url) {
+        this.manga_image_url = manga_image_url;
+    }
+
+    public void setManga_start_date(String manga_start_date) {
+        this.manga_start_date = manga_start_date;
+    }
+
+    public void setManga_members(int manga_members) {
+        this.manga_members = manga_members;
+    }
+
+    public void setManga_rank(int manga_rank) {
+        this.manga_rank = manga_rank;
+    }
+
+    public void setManga_malId(int manga_malId) {
+        this.manga_malId = manga_malId;
+    }
+
+    public void setManga_title(String manga_title) {
+        this.manga_title = manga_title;
+    }
+
+    public void setManga_type(String manga_type) {
+        this.manga_type = manga_type;
+    }
+
+    public void setManga_url(String manga_url) {
+        this.manga_url = manga_url;
+    }
+
+    public void setManga_volumes(int manga_volumes) {
+        this.manga_volumes = manga_volumes;
     }
 }

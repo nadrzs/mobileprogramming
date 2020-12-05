@@ -1,5 +1,10 @@
 package com.example.lockinapp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,10 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.lockinapp.Data.DataBaseHelper;
 import com.example.lockinapp.Model.MangaItem;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
@@ -21,8 +30,10 @@ import butterknife.ButterKnife;
 public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MyViewHolder> {
 
     List<MangaItem> mangaItems;
+    Context context;
 
-    public MangaAdapter(List<MangaItem> mangaItems) {
+    public MangaAdapter(Context context,List<MangaItem> mangaItems) {
+        this.context = context;
         this.mangaItems = mangaItems;
     }
 
@@ -52,12 +63,30 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MyViewHolder
         holder.mangaMembers.setText(String.format("%s Members", members.format(item.getManga_Members())));
         holder.mangaRating.setText(String.valueOf(item.getManga_Score()));
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
+        dataBaseHelper.addMangaRecord(item);
+
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable mFoto;
+                mFoto = holder.mangaImage.getDrawable();
+
+                Bitmap mFotoBitmap;
+                mFotoBitmap = ((BitmapDrawable)mFoto).getBitmap();
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                mFotoBitmap.compress(Bitmap.CompressFormat.JPEG, 100,stream);
+                byte[] bytes = stream.toByteArray();
+
+                Intent intent = new Intent(context.getApplicationContext(), MangaDetailActivity.class);
+                intent.putExtra("MANGA_MAL", mangaItems.get(position).getManga_MalId());
+                intent.putExtra("MANGA_IMAGE_DETAIL", bytes);
+                intent.putExtra("MANGA_TITLE_DETAIL", mangaItems.get(position).getManga_Title());
+                intent.putExtra("MANGA_SCORE_DETAIL", mangaItems.get(position).getManga_Score());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -83,6 +112,8 @@ public class MangaAdapter extends RecyclerView.Adapter<MangaAdapter.MyViewHolder
         TextView mangaRating;
         @BindView(R.id.manga_rating_image)
         ImageView ratingImage;
+        @BindView(R.id.mangaCard)
+        CardView card;
 
         public MyViewHolder(View view) {
             super(view);

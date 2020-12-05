@@ -1,19 +1,26 @@
 package com.example.lockinapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lockinapp.Data.DataBaseHelper;
 import com.example.lockinapp.Model.AnimItem;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
@@ -43,7 +50,6 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         final AnimItem item = animeList.get(position);
-        AnimItem animItem;
 
         DecimalFormat members = (DecimalFormat) DecimalFormat.getNumberInstance();
         DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols();
@@ -57,6 +63,32 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder
         holder.animeStartEnd.setText(String.format("%s - %s", item.getStart_date(), item.getEnd_date()));
         holder.animeMembers.setText(String.format("%s Members", members.format(item.getMembers())));
         holder.animeRating.setText(String.valueOf(item.getScore()));
+
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
+        dataBaseHelper.addRecord(item);
+
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Drawable mFoto;
+                mFoto = holder.animeImage.getDrawable();
+
+                Bitmap mFotoBitmap;
+                mFotoBitmap = ((BitmapDrawable)mFoto).getBitmap();
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                mFotoBitmap.compress(Bitmap.CompressFormat.JPEG, 100,stream);
+                byte[] bytes = stream.toByteArray();
+
+                Intent intent = new Intent(context.getApplicationContext(), AnimeDetailActivity.class);
+                intent.putExtra("ANIME_MAL", animeList.get(position).getMalId());
+                intent.putExtra("ANIME_IMAGE_DETAIL", bytes);
+                intent.putExtra("ANIME_TITLE_DETAIL", animeList.get(position).getTitle());
+                intent.putExtra("ANIME_SCORE_DETAIL", animeList.get(position).getScore());
+                context.startActivity(intent);
+            }
+        });
 
 //        DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
 //        dataBaseHelper.addOne();
@@ -92,6 +124,8 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.MyViewHolder
         TextView animeRating;
         @BindView(R.id.rating_image)
         ImageView ratingImage;
+        @BindView(R.id.AnimeCard)
+        CardView card;
 
         public MyViewHolder(View view) {
             super(view);

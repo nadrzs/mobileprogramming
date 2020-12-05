@@ -106,4 +106,40 @@ public class AnimItem {
     public int getEpisodes() {
         return episodes;
     }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
+
+    public void setMembers(int members) {
+        this.members = members;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public void setMalId(int malId) {
+        this.malId = malId;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setEpisodes(int episodes) {
+        this.episodes = episodes;
+    }
 }

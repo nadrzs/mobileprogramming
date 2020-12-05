@@ -10,10 +10,19 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -21,10 +30,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
 
+    //private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private DatabaseReference daref;
+    private String uID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //mAuth = FirebaseAuth.getInstance();
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        daref = FirebaseDatabase.getInstance().getReference("Users");
+        uID = user.getUid();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.nav_view);
@@ -40,6 +60,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         bottomNav.setSelectedItemId(R.id.nav_home);
+
+        final TextView uname = findViewById(R.id.unameMain);
+//        daref.child(uID).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User name = snapshot.getValue(User.class);
+//
+//                if (name != null) {
+//                    String username = name.username;
+//
+//                    uname.setText(username);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(MainActivity.this, "Error. Failed to display user profile.", Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
 
@@ -78,28 +117,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
-            case R.id.nav_drawer_account:
-                Toast.makeText(this, "Account", Toast.LENGTH_SHORT).show();
-                break;
 
             case R.id.nav_drawer_contact_us:
 
                 Intent intent = new Intent(this, ContactUs.class);
                 startActivity(intent);
-
                 break;
 
             case R.id.nav_drawer_about_us:
-                Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
-                break;
 
-            case R.id.nav_drawer_setting:
-                Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
-                //Koding disini rak
+                Intent intent1 = new Intent(this, AboutUs.class);
+                startActivity(intent1);
+
                 break;
 
             case R.id.nav_drawer_logout:
-                Toast.makeText(this, "Log Out", Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, Login.class));
                 break;
 
         }
