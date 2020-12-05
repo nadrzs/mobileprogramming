@@ -4,84 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyAccount">
-
-    <ImageView
-        android:id="@+id/actionBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </ImageView>
+    tools:context=".EditProfile">
 
     <TextView
-        android:id="@+id/mainTittleMA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="My Account"
-        android:textColor="#FFFFFF"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </TextView>
-
-    <ImageView
-        android:id="@+id/profilePict"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/dp"
-        android:background="@drawable/white_circle"
-        app:layout_constraintBottom_toTopOf="@+id/tittle2MA"
-        app:layout_constraintCircleRadius="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent">
-    </ImageView>
-
-    <TextView
-        android:id="@+id/tittle2MA"
+        android:id="@+id/tittle2EP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
         android:text="Username"
         android:textColor="#0000AF"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/usernameBox"
+        app:layout_constraintBottom_toTopOf="@+id/usernameBoxEP"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/actionBar">
+        app:layout_constraintTop_toTopOf="parent">
     </TextView>
 
-    <TextView
-        android:id="@+id/usernameBox"
+    <EditText
+        android:id="@+id/usernameBoxEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:width="350dp"
         android:height="40dp"
+        android:hint="New Username"
+        android:textColorHint="#BCB9B9"
         android:background="@drawable/text_edge"
         android:textStyle="italic|bold"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/tittle3MA"
+        app:layout_constraintBottom_toTopOf="@+id/tittle3EP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tittle2MA">
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@+id/tittle2EP">
+    </EditText>
 
     <TextView
-        android:id="@+id/tittle3MA"
+        android:id="@+id/tittle3EP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -89,46 +49,48 @@
         android:text="Email"
         android:textColor="#0000AF"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/emailBox"
+        app:layout_constraintBottom_toTopOf="@+id/emailBoxEP"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameBox">
+        app:layout_constraintTop_toBottomOf="@+id/usernameBoxEP">
     </TextView>
 
-    <TextView
-        android:id="@+id/emailBox"
+    <EditText
+        android:id="@+id/emailBoxEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="200dp"
         android:width="350dp"
         android:height="40dp"
+        android:hint="New Email"
+        android:textColorHint="#BCB9B9"
         android:background="@drawable/text_edge"
         android:textStyle="italic|bold"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/editProfil"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tittle3MA">
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@+id/tittle3EP">
+    </EditText>
 
     <Button
-        android:id="@+id/editProfil"
+        android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
         android:width="150dp"
-        android:text="Edit Profile"
+        android:text="Save"
         android:textColor="#0000AF"
         android:background="@drawable/button_edge_2"
         android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailBox" />
+        app:layout_constraintTop_toBottomOf="@+id/emailBoxEP" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/bottom_navigationEP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

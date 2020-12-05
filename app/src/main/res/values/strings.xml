@@ -1,5 +1,17 @@
 <resources>
-    <string name="app_name">AnimaList</string>
+    <string name="app_name"></string>
+
+    <string name="fb">
+        <a href="https://www.facebook.com/">Facebook</a>
+    </string>
+
+    <string name="ig">
+        <a href="https://www.instagram.com/">Instagram</a>
+    </string>
+
+    <string name="tw">
+        <a href="http://twitter.com/">Twitter</a>
+    </string>
 
     <string name="start">Start</string>
     <string name="close">Close</string>
